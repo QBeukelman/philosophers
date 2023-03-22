@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:07 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/21 16:42:07 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/22 12:11:55 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,71 @@
 
 int		ft_simulator(t_philo *philos_array, t_data *data)
 {
-	int				i;
-	pthread_t		*th;
+	int			i;
+	pthread_t	*th;
 
-	th = malloc(sizeof(pthread_t) * (size_t)data->philo_nb); // ! Free
+	th = malloc (sizeof (pthread_t) * (size_t)data->philo_nb);
+	if (th == NULL)
+		return (FAILURE);
 
-	i = -1;
-	while (i++ < data->philo_nb)
+
+	i = 0;
+	while (i < data->philo_nb)
 	{
-		if (pthread_create(&th[i], 0, ft_simulation, (void *)&philos_array[i]))
+		if (pthread_create (&th[i], 0, ft_simulation, (void *)&philos_array[i]))
 		{
-			while (i--)
+			while (i >= 0)
+			{
 				pthread_join (th[i], NULL);
-			return ((void)free (th), FAILURE);
+				i--;
+			}
+			(void)free (th);
+			return (FAILURE);
 		}
-		
+		i++;
 	}
 
-	ft_monitor(philos_array, data); // ! Destroy mutexes
+	if (ft_monitor (philos_array, data) != SUCCESS)
+	{
+		(void)ft_destroy_mutexes (philos_array, data);
+		(void)free(th);
+		return (FAILURE);
+	}
 
-	i = -1;
-	while (i++ < data->philo_nb)
-		if (pthread_join(th[i], NULL))
+	i = 0;
+	while (i < data->philo_nb)
+	{
+		if (pthread_join (th[i], NULL))
 			return (FAILURE);
-	return (0); // ! Destroy mutexes
+		i++;
+	}
+
+	(void)ft_destroy_mutexes(philos_array, data);
+	(void)free (th);
+
+	return (SUCCESS);
 }
 
-int			ft_monitor(t_philo *philos_array, t_data *data)
+static int	ft_monitor(t_philo *philo, t_data *data)
 {
-	int					i;
-	unsigned long		l_meal;
+	int				i;
+	unsigned long	l_meal;
 
 	i = 0;
 	while (1)
 	{
-		pthread_mutex_lock(&data->mutex[MEALS]);
-		l_meal = philos_array[i].last_meal;
-		pthread_mutex_unlock(&data->mutex[MEALS]);
-		if (l_meal && ft_all_done(philos_array, data) - l_meal > (unsigned long)data->time_die)
+		pthread_mutex_lock (&data->mutex[MEALS]);
+		l_meal = philo[i].last_meal;
+		pthread_mutex_unlock (&data->mutex[MEALS]);
+		if (l_meal && ft_all_done (philo, data))
+		{
+			ft_done (data);
+			break ;
+		}
+		if (l_meal && ft_abs_time () - l_meal > (unsigned long)data->time_die)
 		{
 			ft_died (data);
-			ft_print (&philos_array[i], "died");
+			ft_print (&philo[i], "died");
 			break ;
 		}
 		i = (i + 1) % data->philo_nb;
@@ -87,4 +111,16 @@ static int		ft_all_done(t_philo *philos_array, t_data *data)
 	if (done == data->philo_nb)
 		return (TRUE);
 	return (FALSE);
+}
+
+static void		ft_destroy_mutexes(t_philo *philo, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo->data->philo_nb)
+		pthread_mutex_destroy (&philo->fork[i++]);
+	i = 0;
+	while (i < M_NUM)
+		pthread_mutex_destroy (&data->mutex[i++]);
 }

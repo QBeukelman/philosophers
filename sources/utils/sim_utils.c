@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 09:59:49 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/21 13:30:19 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/03/22 12:07:50 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,11 @@ int		ft_check_done(t_philo *philos_array)
 	}
 	pthread_mutex_unlock(&philos_array->data->mutex[DONE]);
 	return (FALSE);
+}
+
+void	ft_done(t_data *data)
+{
+	pthread_mutex_lock(&data->mutex[DONE]);
+	data->done = TRUE;
+	pthread_mutex_unlock(&data->mutex[DONE]);
 }
