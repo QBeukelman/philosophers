@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 08:48:11 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/21 08:58:36 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/03/22 13:32:18 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ t_philo		*ft_init_philo(t_philo *philos_array, t_data *data)
 	while (i < data->philo_nb)
 	{
 		philos_array[i].id = i + 1;
+		philos_array[i].last_meal = 0;
 		philos_array[i].meal_counter = 0;
 		philos_array[i].l_fork = i;
 		if (i - 1 < 0)
-			philos_array[i].r_fork = data->philo_nb - 1;
+			philos_array[i].r_fork = data->philo_nb; // ! was (-1);
 		else
 			philos_array[i].r_fork = i - 1;
 

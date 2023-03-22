@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/21 16:27:51 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/22 13:25:28 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,29 @@ void		*ft_simulation(void *arg)
 	t_philo		*self;
 
 	self = (t_philo *)arg;
-	printf("Thread created\n");
+
+
+	printf("Thread created with id: %d\n", self->id);
+	
+	// All even philos wait
 	if (self->id % 2 == 0)
 	{
 		ft_print(self, "is thinking");
 		ft_msleep(self->data->time_eat);
 	}
-	while (1)
-	{
-		if (ft_check_died(self))
-			break ;
-		if (ft_eating (self) != SUCCESS)
-			break ;
-		ft_print(self, "is thinking");
-		ft_msleep(self->data->time_think);
-	}
+	
+	// while (1)
+	// {
+	// 	if (ft_check_died(self))
+	// 		break ;
+		
+	// 	if (ft_eating (self) != SUCCESS)
+	// 		break ;
+		
+	// 	ft_print(self, "is thinking");
+	// 	ft_msleep(self->data->time_think);
+	// }
+	
 	return (NULL);
 }
 

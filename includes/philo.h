@@ -12,6 +12,8 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+#define NULL __null
+
 
 // ===== [ enums ] =====
 typedef enum e_mutexes
