@@ -1,0 +1,21 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+
+		{
+			"name": "(OSX) Launch",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${workspaceFolder}/philo",
+			"args": [5, 100, 100, 100],
+			"stopAtEntry": false,
+			"cwd": ".",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"logging": {
+				"moduleLoad": false
+			}
+		}
+	]
+}
