@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_stol.c                                          :+:    :+:            */
+/*   ft_atol.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/20 09:45:32 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2023/03/20 09:47:53 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/23 09:27:52 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		ft_isspace(char c);
 int		ft_isdigit(int c);
 
 
-long int	ft_stol(char *str)
+long int	ft_atol(char *str)
 {
 	long int	val;
 	int			sign;

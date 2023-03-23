@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/21 16:24:25 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/23 11:03:23 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 https://github.com/nafuka11/philosophers-visualizer
 https://github.com/clemedon/philosophers
 https://begriffs.com/posts/2020-03-23-concurrent-programming.html
+Diagrams - https://www.youtube.com/watch?v=V73F3kDSkgs
 
 memset, printf, malloc, free, write,
 usleep, gettimeofday, pthread_create,
@@ -25,9 +26,9 @@ pthread_mutex_unlock
  *     i-1   i      i
  *     RFork Philos LFork
  *     ------------------
- *       P2  ← P0 →  P0 (self fork at Left)
- *       P0  ← P1 →  P1 (self fork at Left)
- *       P1  ← P2 →  P2 (self fork at Left)
+ *       F2  ← P0 →  F0
+ *       F0  ← P1 →  F1
+ *       F1  ← P2 →  F2
 
  *     Where F0 belongs to philo P3.
 

@@ -12,8 +12,10 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-#define NULL __null
 
+# ifndef NULL
+#  define NULL ((char *)0)
+# endif
 
 // ===== [ enums ] =====
 typedef enum e_mutexes
@@ -78,15 +80,11 @@ int				ft_check_args(int argc, char *argv[]);
 
 
 // ===== [ tools ] =====
-long int		ft_stol(char *str);
+long int		ft_atol(char *str);
 
 
 // ===== [ sim utils ] =====
 void			ft_print(t_philo *philos_array, char *str);
-int				ft_check_died(t_philo *philos_array);
-void			ft_died(t_data *data);
-int				ft_check_done(t_philo *philos_array);
-void			ft_done(t_data *data);
 
 
 // ===== [ time utils ] =====
@@ -97,19 +95,11 @@ void			ft_msleep(unsigned long msec);
 
 // ===== [ simulator ] =====
 int				ft_simulator(t_philo *philos_array, t_data *data);
-static int		ft_monitor(t_philo *philos_array, t_data *data);
-static int		ft_all_done(t_philo *philos_array, t_data *data);
-static void		ft_destroy_mutexes(t_philo *philo, t_data *data);
+// static int		ft_monitor(t_philo *philos_array, t_data *data);
 
 
 // ===== [ simulation ] =====
 void			*ft_simulation(void *arg);
-static int		ft_eating(t_philo *self);
-static int		ft_start_eating(t_philo *self);
-static int		ft_finish_eating(t_philo *self);
-int				ft_max(int a, int b);
-int				ft_min(int a, int b);
-
 
 
 #endif

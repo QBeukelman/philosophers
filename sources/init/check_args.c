@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:58:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/20 09:47:44 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/23 09:29:20 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		ft_check_args(int argc, char *argv[])
 			write (2, "Error: Invalid character.\n", 26);
 			return (FAILURE);
 		}
-		if (ft_stol(argv[argc]) > INT_MAX || ft_stol(argv[argc]) < 0)
+		if (ft_atol(argv[argc]) > INT_MAX || ft_atol(argv[argc]) < 0)
 		{
 			write (2, "Error: Value out of range.\n", 27);
 			return (FAILURE);

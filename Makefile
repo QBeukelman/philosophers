@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/18 10:59:48 by qbeukelm      #+#    #+#                  #
-#    Updated: 2023/03/22 12:13:58 by qbeukelm      ########   odam.nl          #
+#    Updated: 2023/03/23 09:28:31 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SOURCES = philo.c \
 
 SOURCES_INIT = check_args.c \
 
-SOURCES_TOOLS = ft_stol.c \
+SOURCES_TOOLS = ft_atol.c \
 
 SOURCES_UTILS = sim_utils.c \
 				time_utils.c \
