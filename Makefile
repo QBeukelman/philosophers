@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/18 10:59:48 by qbeukelm      #+#    #+#                  #
-#    Updated: 2023/03/23 09:28:31 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2023/03/23 12:10:18 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SOURCES_UTILS = sim_utils.c \
 
 SOURCES_SIM = ft_simulation.c \
 				ft_simulator.c \
+				ft_eating.c \
 
 
 # ===== Manage Directories =====

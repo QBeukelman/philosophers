@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/23 11:20:33 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/23 12:35:21 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,33 +28,44 @@ void		*ft_simulation(void *arg)
 		ft_print(self, "is thinking");
 		ft_msleep(self->data->time_eat);
 	}
+	
+
 
 	while (1)
 	{
 		// Check died
+			// if time since last_meal > time_die
 
-		// Try to eat
-
-		// Think
+		// Eat
+			// Lock forks
+		if (ft_eating(self) != SUCCESS)
+			break ;
 
 		// Sleep
+			// Wait
+		ft_print(self, "is sleeping");
+		ft_msleep(self->data->time_sleep);
+		
+		// Think
+			// Wait
+		ft_think(self);
 	}
 
 	// printf("ID: %d | %d %d | \n", self->id, self->l_fork, self->r_fork);
-	if (self->id == 1)
-	{
+	// if (self->id == 1)
+	// {
 
-		// ft_print(self, "Thread created");
-		pthread_mutex_lock(&self->fork[self->l_fork]);
-		ft_print(self, "Picked up L_Fork");
-		pthread_mutex_lock(&self->fork[self->r_fork]);
-		ft_print(self, "Picked up R_Fork");
-		sleep(3);
-		pthread_mutex_unlock(&self->fork[self->l_fork]);
-		ft_print(self, "Put down L_Fork");
-		pthread_mutex_unlock(&self->fork[self->r_fork]);
-		ft_print(self, "Put down R_Fork");
-	}
+	// 	// ft_print(self, "Thread created");
+	// 	pthread_mutex_lock(&self->fork[self->l_fork]);
+	// 	ft_print(self, "Picked up L_Fork");
+	// 	pthread_mutex_lock(&self->fork[self->r_fork]);
+	// 	ft_print(self, "Picked up R_Fork");
+	// 	sleep(3);
+	// 	pthread_mutex_unlock(&self->fork[self->l_fork]);
+	// 	ft_print(self, "Put down L_Fork");
+	// 	pthread_mutex_unlock(&self->fork[self->r_fork]);
+	// 	ft_print(self, "Put down R_Fork");
+	// }
 	
 	return (NULL);
 }
