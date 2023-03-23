@@ -99,15 +99,15 @@ int				ft_simulator(t_philo *philos_array, t_data *data);
 
 
 // ===== [ simulation ] =====
-void			*ft_simulation(void *arg);
+void			*ft_simulation_thread(void *arg);
 
 
 // ===== [ eating ] =====
 int		ft_eating(t_philo *self);
 int		ft_start_eating(t_philo *self);
 
-void	ft_finish_eating(t_philo *self);
-void	ft_sleep(t_philo *self);
-void	ft_think(t_philo *self);
+int		ft_finish_eating(t_philo *self);
+int		ft_sleep(t_philo *self);
+int		ft_think(t_philo *self);
 
 #endif

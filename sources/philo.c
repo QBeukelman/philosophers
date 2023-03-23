@@ -6,15 +6,17 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/23 11:03:23 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/23 14:07:40 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* 
-https://github.com/nafuka11/philosophers-visualizer
-https://github.com/clemedon/philosophers
-https://begriffs.com/posts/2020-03-23-concurrent-programming.html
+Viz - https://github.com/nafuka11/philosophers-visualizer
+Eg - https://github.com/clemedon/philosophers
 Diagrams - https://www.youtube.com/watch?v=V73F3kDSkgs
+Article - https://begriffs.com/posts/2020-03-23-concurrent-programming.html
+Article - https://www.codequoi.com/en/threads-mutexes-and-concurrent-programming-in-c/
+
 
 memset, printf, malloc, free, write,
 usleep, gettimeofday, pthread_create,
