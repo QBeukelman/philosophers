@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/23 14:07:40 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/24 11:31:40 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,14 @@ pthread_mutex_unlock
  *       F2  ← P0 →  F0
  *       F0  ← P1 →  F1
  *       F1  ← P2 →  F2
+ * 
+ * 
+ * 	./philo 4 410 200 200 5
+ *  	     +-|---|---|--|-- philo_nb
+ *      	   +---|---|--|-- time_die
+ *          	   +---|--|-- time_eat
+ *              	   +--|-- time_slp
+ * 						  +-- must_eat (optional)
 
  *     Where F0 belongs to philo P3.
 

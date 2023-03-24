@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/24 10:38:48 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/24 11:41:19 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,12 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 		i = 0;
 		while (i < data->philo_nb)
 		{
-			printf("%p", &philos_array[i]);
 			pthread_mutex_lock(&data->mutex[MEALS]);
 			l_meal = philos_array[i].last_meal;
 			pthread_mutex_unlock(&data->mutex[MEALS]);
-			ft_set_are_done(&philos_array[i], data, l_meal);
+			if (ft_set_are_done(philos_array, &philos_array[i], data, l_meal) != SUCCESS)
+				return (printf("ALL PHILOS DONE\n"), FAILURE); // ! All philos done
+			
 			// ft_set_is_dead()
 			usleep (50);
 			i++;
@@ -80,28 +81,49 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 	return (SUCCESS);
 }
 
-static int	ft_set_are_done(t_philo *self, t_data *data, unsigned long l_meal)
+static int	ft_set_are_done(t_philo *p_a, t_philo *self, t_data *data, unsigned long l_meal)
 {
-	if (l_meal && ft_all_done(self, data))
+	if (l_meal && ft_all_done(p_a, data))
 	{
 		// ft_done(data);
-		return (SUCCESS); // ! Should fail
+		return (FAILURE); // ! Should fail
 	}
+	pthread_mutex_lock(&self->data->mutex[MEALS]);
+	// printf("Monitoring Meal_c: %d, %d, %p\n", self->meal_counter, self->id, data);
+	pthread_mutex_unlock(&self->data->mutex[MEALS]);
 	return (SUCCESS);
 }
 
 // static int	ft_set_is_dead(t_philo *self, t_data *data)
 
 
-static int	ft_all_done(t_philo *self, t_data *data)
+static int	ft_all_done(t_philo *p_a, t_data *data)
 {
-	// meal_counter == must_eat;
+	int		i;
+	int		count_success;
+	int		meals_count;
 
-	pthread_mutex_lock(&self->data->mutex[MEALS]);
-	printf("Meal counter: %d, %d, %p\n", self->meal_counter, self->id, data);
-	pthread_mutex_unlock(&self->data->mutex[MEALS]);
-	usleep (50);
-	return (SUCCESS);
+	if (data->must_eat == -1)
+		return (printf("ft_all_done(), must_eat == -1\n"), FAILURE);
+
+	
+	i = 0;
+	count_success = 0;
+	while (i < data->philo_nb)
+	{
+		pthread_mutex_lock(&p_a->data->mutex[MEALS]);
+		meals_count = p_a[i].meal_counter;
+		pthread_mutex_unlock(&p_a->data->mutex[MEALS]);
+	
+		if (meals_count == data->must_eat)
+		{
+			if (count_success == data->philo_nb)
+				return (TRUE);
+			count_success++;
+		}
+		usleep(50);
+	}
+	return (FALSE);
 }
 
 // void		ft_done(t_data *data)

@@ -39,7 +39,7 @@ int		ft_simulator(t_philo *philos_array, t_data *data)
 	}
 
 	// ! Monitoring
-	if (ft_observe_thread(&philos_array[i], data) != SUCCESS)
+	if (ft_observe_thread(philos_array, data) != SUCCESS)
 		return (FAILURE); // Destroy mutex
 
 	// ! Join threads

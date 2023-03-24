@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/18 10:59:48 by qbeukelm      #+#    #+#                  #
-#    Updated: 2023/03/23 14:13:00 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2023/03/24 11:46:26 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ NAME_EXCUITABLE = philo
 
 
 # ===== Compile =====
-CC = gcc -g
-CFLAGS =
+CC = gcc
+CFLAGS = # ! ADD C FLAGS
 
 
 # ===== Colors =====
