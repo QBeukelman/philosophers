@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/24 11:41:19 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/24 12:54:56 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,13 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 			pthread_mutex_lock(&data->mutex[MEALS]);
 			l_meal = philos_array[i].last_meal;
 			pthread_mutex_unlock(&data->mutex[MEALS]);
-			if (ft_set_are_done(philos_array, &philos_array[i], data, l_meal) != SUCCESS)
+
+			if (ft_set_are_done(philos_array, &philos_array[i], data, l_meal) == SUCCESS)
 				return (printf("ALL PHILOS DONE\n"), FAILURE); // ! All philos done
-			
+			// if (ft_set_is_dead(data, l_meal) == SUCCESS)
+			// 	return (printf("PHILO DIED\n"), FAILURE); // ! Philo dies
+
+
 			// ft_set_is_dead()
 			usleep (50);
 			i++;
@@ -85,16 +89,22 @@ static int	ft_set_are_done(t_philo *p_a, t_philo *self, t_data *data, unsigned l
 {
 	if (l_meal && ft_all_done(p_a, data))
 	{
-		// ft_done(data);
-		return (FAILURE); // ! Should fail
+		// ft_done(data); // ! Destroy threads
+		return (SUCCESS); // ! All philos done
 	}
-	pthread_mutex_lock(&self->data->mutex[MEALS]);
-	// printf("Monitoring Meal_c: %d, %d, %p\n", self->meal_counter, self->id, data);
-	pthread_mutex_unlock(&self->data->mutex[MEALS]);
-	return (SUCCESS);
+
+	return (FAILURE);
 }
 
-// static int	ft_set_is_dead(t_philo *self, t_data *data)
+static int	ft_set_is_dead(t_data *data, unsigned long l_meal)
+{
+	if (l_meal && (ft_abs_time() - l_meal) > (unsigned long)data->time_die)
+	{
+		// ft_die(); // ! Destroy threads
+		return (SUCCESS);
+	}
+	return (FAILURE);
+}
 
 
 static int	ft_all_done(t_philo *p_a, t_data *data)
