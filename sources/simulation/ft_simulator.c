@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:07 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/23 14:12:27 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/24 10:28:27 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int		ft_simulator(t_philo *philos_array, t_data *data)
 	}
 
 	// ! Monitoring
+	if (ft_observe_thread(&philos_array[i], data) != SUCCESS)
+		return (FAILURE); // Destroy mutex
 
 	// ! Join threads
 	i = 0;

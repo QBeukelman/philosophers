@@ -98,8 +98,13 @@ int				ft_simulator(t_philo *philos_array, t_data *data);
 // static int		ft_monitor(t_philo *philos_array, t_data *data);
 
 
-// ===== [ simulation ] =====
+// ===== [ simulation thread ] =====
 void			*ft_simulation_thread(void *arg);
+int				ft_check_die(t_philo *self);
+
+int				ft_observe_thread(t_philo *philos_array, t_data *data);
+static int		ft_set_are_done(t_philo *self, t_data *data, unsigned long l_meal);
+static int		ft_all_done(t_philo *self, t_data *data);
 
 
 // ===== [ eating ] =====
