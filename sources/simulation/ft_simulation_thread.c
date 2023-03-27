@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/27 09:58:41 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/27 11:30:23 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,6 @@ void		*ft_simulation_thread(void *arg)
 	return (NULL);
 }
 
-int		ft_check_die(t_philo *self)
-{
-	pthread_mutex_lock(&self->data->mutex[DIED]);
-	if (self->data->died == TRUE)
-	{
-		return (FALSE);
-	}
-	pthread_mutex_unlock(&self->data->mutex[DIED]);
-	return (SUCCESS);
-}
-
 // ===== [ observe ] =====
 int			ft_observe_thread(t_philo *philos_array, t_data *data)
 {
@@ -78,16 +67,16 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 			if (ft_set_are_done(philos_array, &philos_array[i], data, l_meal) == SUCCESS)
 				return (printf("ALL PHILOS DONE\n"), FAILURE); // ! All philos done
 
-
-			// ft_set_is_dead()
+			usleep (200);
 			i++;
 		}
-		// usleep (200);
+		usleep (200);
 	}
 
 	return (SUCCESS);
 }
 
+// ===== [ done ] =====
 static int	ft_set_are_done(t_philo *p_a, t_philo *self, t_data *data, unsigned long l_meal)
 {
 	if (l_meal && ft_all_done(p_a, data))
@@ -99,21 +88,7 @@ static int	ft_set_are_done(t_philo *p_a, t_philo *self, t_data *data, unsigned l
 	return (FAILURE);
 }
 
-static int	ft_set_is_dead(t_data *data, unsigned long l_meal)
-{
-	if (l_meal > ft_abs_time()) // Avoid negative
-		return (FAILURE);
-
-	else if (l_meal && (ft_abs_time() - l_meal) > (unsigned long)data->time_die)
-	{
-		// ft_die(); // ! Destroy threads
-		return (SUCCESS);
-	}
-
-	return (FAILURE);
-}
-
-
+// void		ft_done(t_data *data)
 static int	ft_all_done(t_philo *p_a, t_data *data)
 {
 	int		i;
@@ -123,7 +98,6 @@ static int	ft_all_done(t_philo *p_a, t_data *data)
 	if (data->must_eat == -1)
 		return (printf("ft_all_done(), must_eat == -1\n"), FAILURE);
 
-	
 	i = 0;
 	count_success = 0;
 	while (i < data->philo_nb)
@@ -138,9 +112,40 @@ static int	ft_all_done(t_philo *p_a, t_data *data)
 				return (TRUE);
 			count_success++;
 		}
-		// usleep(50);
+		usleep(50);
 	}
 	return (FALSE);
 }
 
-// void		ft_done(t_data *data)
+// ===== [ died ] =====
+static int	ft_set_is_dead(t_data *data, unsigned long l_meal)
+{
+	if (l_meal > ft_abs_time()) // Avoid negative
+		return (FAILURE);
+
+	else if (l_meal && (ft_abs_time() - l_meal) > (unsigned long)data->time_die)
+	{
+		ft_died(data); // ! Destroy threads
+		return (SUCCESS);
+	}
+	usleep(50);
+	return (FAILURE);
+}
+
+void	ft_died(t_data *data)
+{
+	pthread_mutex_lock (&data->mutex[DIED]);
+	data->died = TRUE;
+	pthread_mutex_unlock (&data->mutex[DIED]);
+}
+
+int		ft_check_die(t_philo *self)
+{
+	pthread_mutex_lock(&self->data->mutex[DIED]);
+	if (self->data->died == TRUE)
+	{
+		return (FALSE);
+	}
+	pthread_mutex_unlock(&self->data->mutex[DIED]);
+	return (SUCCESS);
+}
