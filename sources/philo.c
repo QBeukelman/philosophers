@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/24 11:31:40 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/27 09:31:34 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ pthread_mutex_unlock
  * 
  * 
  * 	./philo 4 410 200 200 5
- *  	     +-|---|---|--|-- philo_nb
+ *  	    +--|---|---|--|-- philo_nb
  *      	   +---|---|--|-- time_die
  *          	   +---|--|-- time_eat
  *              	   +--|-- time_slp
