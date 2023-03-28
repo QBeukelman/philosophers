@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/28 11:36:52 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/28 12:54:10 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ void		*ft_simulation_thread(void *arg)
 	// Every second philo waits to start eating
 	if (self->id % 2 == 0)
 	{
-		ft_print(self, "is thinking");
-		ft_msleep(self->data->time_eat);
+		usleep (200);
+		// ft_print(self, "is thinking");
+		// ft_msleep(self->data->time_eat);
 	}
 
 	while (1)
@@ -39,7 +40,8 @@ void		*ft_simulation_thread(void *arg)
 			ft_print(self, "DIED");
 			break ;
 		}
-		ft_eating(self);
+		if (ft_eating(self) != SUCCESS)
+			break ;
 		ft_sleep(self);
 		ft_think(self);
 	}
@@ -62,8 +64,8 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 			l_meal = philos_array[i].last_meal;
 			pthread_mutex_unlock(&data->mutex[MEALS]);
 
-			// if (ft_set_are_done(philos_array, &philos_array[i], data, l_meal) == SUCCESS)
-			// 	return (printf("ALL PHILOS DONE\n"), FAILURE); // ! All philos done
+			if (ft_set_are_done(philos_array, &philos_array[i], data, l_meal) == SUCCESS)
+				return (printf("ALL PHILOS DONE\n"), FAILURE); // ! All philos done
 			
 			if (ft_set_is_dead(data, l_meal) == SUCCESS)
 			{
@@ -73,7 +75,7 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 			
 			i++;
 		}
-		usleep (200);
+		// usleep (200);
 	}
 
 	return (SUCCESS);
