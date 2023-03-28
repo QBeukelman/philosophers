@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/23 11:39:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2023/03/23 13:52:39 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/28 11:46:55 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	ft_eating(t_philo *self)
 
 int	ft_start_eating(t_philo *self)
 {
-	pthread_mutex_lock(&self->fork[self->l_fork]);
-	pthread_mutex_lock(&self->fork[self->r_fork]);
+	pthread_mutex_lock(&self->fork[ft_min(self->l_fork, self->r_fork)]);
+	pthread_mutex_lock(&self->fork[ft_max(self->l_fork, self->r_fork)]);
 
 	// If L == R (Fail)
 	ft_print(self, "has taken a fork");
@@ -46,8 +46,8 @@ int	ft_start_eating(t_philo *self)
 
 int		ft_finish_eating(t_philo *self)
 {
-	pthread_mutex_unlock(&self->fork[self->l_fork]);
-	pthread_mutex_unlock(&self->fork[self->r_fork]);
+	pthread_mutex_unlock(&self->fork[ft_min(self->l_fork, self->r_fork)]);
+	pthread_mutex_unlock(&self->fork[ft_max(self->l_fork, self->r_fork)]);
 	return (SUCCESS);
 }
 
@@ -79,4 +79,19 @@ int		ft_is_done(t_philo *self)
 	}
 	pthread_mutex_unlock(&self->data->mutex[DONE]);
 	return (FALSE);
+}
+
+
+int	ft_max(int a, int b)
+{
+	if (b > a)
+		return (b);
+	return (a);
+}
+
+int	ft_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
 }

@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/28 10:37:47 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/28 11:36:52 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,18 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 			l_meal = philos_array[i].last_meal;
 			pthread_mutex_unlock(&data->mutex[MEALS]);
 
+			// if (ft_set_are_done(philos_array, &philos_array[i], data, l_meal) == SUCCESS)
+			// 	return (printf("ALL PHILOS DONE\n"), FAILURE); // ! All philos done
+			
 			if (ft_set_is_dead(data, l_meal) == SUCCESS)
 			{
 				ft_print (&philos_array[i], "died");
-				break ; // ! Philo dies
+				return (FAILURE); // ! Philo dies
 			}
-			usleep (500);
-
-			if (ft_set_are_done(philos_array, &philos_array[i], data, l_meal) == SUCCESS)
-				return (printf("ALL PHILOS DONE\n"), FAILURE); // ! All philos done
-
 			
 			i++;
 		}
-		// usleep (200);
+		usleep (200);
 	}
 
 	return (SUCCESS);
@@ -132,7 +130,7 @@ static int	ft_set_is_dead(t_data *data, unsigned long l_meal)
 		ft_died(data); // ! Destroy threads
 		return (SUCCESS);
 	}
-	usleep(50);
+	// usleep(50);
 	return (FAILURE);
 }
 

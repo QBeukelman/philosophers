@@ -116,5 +116,7 @@ int		ft_start_eating(t_philo *self);
 int		ft_finish_eating(t_philo *self);
 int		ft_sleep(t_philo *self);
 int		ft_think(t_philo *self);
+int		ft_max(int a, int b);
+int		ft_min(int a, int b);
 
 #endif
