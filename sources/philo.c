@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/28 12:32:45 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/28 13:37:07 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ pthread_mutex_unlock
  *       F1  ← P2 →  F2
  * 
  * 
- * 	./philo 4 410 200 200 5
- *  	    +--|---|---|--|-- philo_nb
- *      	   +---|---|--|-- time_die
- *          	   +---|--|-- time_eat
- *              	   +--|-- time_slp
- * 						  +-- must_eat (optional)
+ * 	./philo 4 410 200 200  5
+ *  	    +--|---|---|---|-- philo_nb
+ *      	   +---|---|---|-- time_die
+ *          	   +---|---|-- time_eat
+ *              	   +---|-- time_sleep
+ * 						   +-- must_eat (optional)
 
  *     Where F0 belongs to philo P3.
 
@@ -67,7 +67,10 @@ int		main(int argc, char *argv[])
 
 
 	printf("Philo[0]->data->nbr: %d\n", philos_array[0].data->philo_nb);
-	usleep (1000);
 	ft_simulator (philos_array, data);
+
+	free (data);
+	free (philos_array);
+	return (EXIT_SUCCESS);
 }
 

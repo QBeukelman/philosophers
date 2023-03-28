@@ -95,7 +95,7 @@ void			ft_msleep(unsigned long msec);
 
 // ===== [ simulator ] =====
 int				ft_simulator(t_philo *philos_array, t_data *data);
-// static int		ft_monitor(t_philo *philos_array, t_data *data);
+static void		ft_destroy_mutexes(t_philo *philo, t_data *data);
 
 
 // ===== [ simulation thread ] =====

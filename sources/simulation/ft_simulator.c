@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:07 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/24 12:56:12 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/28 13:23:23 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,20 @@ int		ft_simulator(t_philo *philos_array, t_data *data)
 	}
 
 	// ! Destroy mutex
+	ft_destroy_mutexes(philos_array, data);
+	(void)free (th);
 
 	return (SUCCESS);
 }
 
-// Continously check simulations termination conditions
-// static int	ft_monitor(t_philo *philo, t_data *data)
-// {
+static void	ft_destroy_mutexes(t_philo *philo, t_data *data)
+{
+	int	i;
 
-// 	return (SUCCESS);
-// }
-
+	i = 0;
+	while (i < philo->data->philo_nb)
+		pthread_mutex_destroy (&philo->fork[i++]);
+	i = 0;
+	while (i < M_NUM)
+		pthread_mutex_destroy (&data->mutex[i++]);
+}
