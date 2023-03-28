@@ -3,7 +3,7 @@
 This repository is about cuncurent programming.
 
 
-### What is the 'Dining Philosophers Prolem'? 
+### What is the 'Dining Philosophers Problem'? 
 
 In Computer Science, the dining philosophers problem is an example often used in concurrent algorithm design to illustrate synchronization issues and techniques
 for resolving them.
