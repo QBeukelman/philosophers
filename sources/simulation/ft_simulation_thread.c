@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/27 11:30:23 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/28 10:37:47 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ void		*ft_simulation_thread(void *arg)
 		// printf("ID: %d, ABS_time - l_meal: %lu > time_die: %lu\n", self->id, (ft_abs_time() - self->last_meal), (unsigned long)self->data->time_die);
 
 		if (ft_check_die(self) != SUCCESS)
+		{
+			ft_print(self, "DIED");
 			break ;
+		}
 		ft_eating(self);
 		ft_sleep(self);
 		ft_think(self);
@@ -50,7 +53,6 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 	int				i;
 	unsigned long	l_meal;
 	
-	
 	while (1)
 	{
 		i = 0;
@@ -61,16 +63,19 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 			pthread_mutex_unlock(&data->mutex[MEALS]);
 
 			if (ft_set_is_dead(data, l_meal) == SUCCESS)
-				return (printf("ID: %d, last_meal_diff: %lu\n", philos_array[i].id, (ft_abs_time() - philos_array[i].last_meal)), FAILURE); // ! Philo dies
-			
-			
+			{
+				ft_print (&philos_array[i], "died");
+				break ; // ! Philo dies
+			}
+			usleep (500);
+
 			if (ft_set_are_done(philos_array, &philos_array[i], data, l_meal) == SUCCESS)
 				return (printf("ALL PHILOS DONE\n"), FAILURE); // ! All philos done
 
-			usleep (200);
+			
 			i++;
 		}
-		usleep (200);
+		// usleep (200);
 	}
 
 	return (SUCCESS);
@@ -112,7 +117,6 @@ static int	ft_all_done(t_philo *p_a, t_data *data)
 				return (TRUE);
 			count_success++;
 		}
-		usleep(50);
 	}
 	return (FALSE);
 }
