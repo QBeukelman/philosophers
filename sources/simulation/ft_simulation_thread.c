@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/29 14:00:13 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/03/29 14:14:22 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 				ft_print (&philos_array[i], "died");
 				return (FAILURE); // ! Philo dies
 			}
-			usleep (400);
 			i++;
 		}
 		
@@ -124,7 +123,6 @@ static int	ft_all_done(t_philo *p_a, t_data *data)
 				pthread_mutex_unlock(&p_a->data->mutex[DONE]);
 				return (TRUE);
 			}
-			printf("Philo %d is done eating %d meals\n", p_a[i].id, p_a[i].meal_counter);
 			count_success++;
 		}
 		i++;

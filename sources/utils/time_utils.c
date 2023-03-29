@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:19:34 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/29 13:17:15 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/03/29 14:13:30 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,12 @@ unsigned long	ft_rel_time(unsigned long begin)
 
 void	ft_msleep(unsigned long msec)
 {
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
-	usleep (msec * 50);
+	int		i;
+
+	i = 0;
+	while (i < 10)
+	{
+		usleep (msec * 100);
+		i++;
+	}
 }
