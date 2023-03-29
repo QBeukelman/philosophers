@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/29 13:19:16 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/03/29 14:00:13 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 			l_meal = philos_array[i].last_meal;
 			pthread_mutex_unlock(&data->mutex[MEALS]);
 
-			if (ft_set_are_done(philos_array, &philos_array[i], data, l_meal) == SUCCESS)
+			if (ft_set_are_done(philos_array, data, l_meal) == SUCCESS)
 				return (printf("ALL PHILOS DONE\n"), FAILURE); // ! All philos done
-			
+
 			if (ft_set_is_dead(data, l_meal) == SUCCESS)
 			{
 				ft_print (&philos_array[i], "died");
 				return (FAILURE); // ! Philo dies
 			}
-			usleep (200);
+			usleep (400);
 			i++;
 		}
 		
@@ -87,9 +87,9 @@ static int	ft_check_all_done(t_philo *self)
 	return (FAILURE);
 }
 
-static int	ft_set_are_done(t_philo *p_a, t_philo *self, t_data *data, unsigned long l_meal)
+static int	ft_set_are_done(t_philo *p_a, t_data *data, unsigned long l_meal)
 {
-	if (l_meal && ft_all_done(p_a, data))
+	if (l_meal && ft_all_done(p_a, data) == TRUE)
 	{
 		// ft_done(data); // ! Destroy threads
 		return (SUCCESS); // ! All philos done
@@ -124,8 +124,10 @@ static int	ft_all_done(t_philo *p_a, t_data *data)
 				pthread_mutex_unlock(&p_a->data->mutex[DONE]);
 				return (TRUE);
 			}
+			printf("Philo %d is done eating %d meals\n", p_a[i].id, p_a[i].meal_counter);
 			count_success++;
 		}
+		i++;
 	}
 	return (FALSE);
 }
@@ -133,10 +135,10 @@ static int	ft_all_done(t_philo *p_a, t_data *data)
 // ===== [ died ] =====
 static int	ft_set_is_dead(t_data *data, unsigned long l_meal)
 {
-	if (l_meal > ft_abs_time()) // Avoid negative
-		return (FAILURE);
+	// if (l_meal > ft_abs_time()) // Avoid negative
+	// 	return (FAILURE);
 
-	else if (l_meal && (ft_abs_time() - l_meal) > (unsigned long)data->time_die)
+	if (l_meal && (ft_abs_time() - l_meal) > (unsigned long)data->time_die)
 	{
 		ft_died(data); // ! Destroy threads
 		return (SUCCESS);
