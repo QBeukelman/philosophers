@@ -6,28 +6,11 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 08:48:11 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/28 11:44:13 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/29 10:08:52 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
-
-// int		ft_init(int argc, char *argv[])
-// {	
-
-	
-// 	data = malloc(sizeof(t_philo));
-// 	if (data == NULL)
-// 		return (FAILURE);
-// 	data = ft_init_data(data, argc, argv);
-
-// 	philos_array = malloc(sizeof(t_philo) * data->philo_nb);
-// 	if (philos_array == NULL)
-// 		return (FAILURE);
-// 	philos_array = ft_init_philo(philos_array, data);
-
-// 	return (SUCCESS);
-// }
 
 // ===== [ PHILO ] =====
 t_philo		*ft_init_philo(t_philo *philos_array, t_data *data)
@@ -51,7 +34,6 @@ t_philo		*ft_init_philo(t_philo *philos_array, t_data *data)
 	{
 		philos_array[i].last_meal = data->sim_begin;
 		philos_array[i].id = i + 1;
-		philos_array[i].last_meal = 0;
 		philos_array[i].meal_counter = 0;
 		philos_array[i].l_fork = i;
 		if (i - 1 < 0)

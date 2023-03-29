@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 09:59:49 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/28 13:46:48 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/29 10:09:23 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,6 @@ void	ft_print(t_philo *philos_array, char *str)
 	// 		ft_abs_time(), philos_array->data->sim_begin,
 	// 		ft_abs_time() - philos_array->data->sim_begin,
 	// 		philos_array->id, str);
+
+	// printf("Last_Meals: %lu\n\n", philos_array->last_meal);
 }

@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/18 10:59:48 by qbeukelm      #+#    #+#                  #
-#    Updated: 2023/03/24 11:46:26 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2023/03/29 09:54:34 by qbeukelm      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ iGREEN	:= \033[32;1m
 YELLOW	:= \033[33;1m
 BLUE	:= \033[34;1m
 RESET	:= \033[0m
-
 
 
 # ===== Sources =====

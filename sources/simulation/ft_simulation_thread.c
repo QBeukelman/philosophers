@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/28 13:53:02 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/29 10:12:36 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void		*ft_simulation_thread(void *arg)
 
 	while (1)
 	{
-		// printf("ID: %d, ABS_time: %lu, l_meal: %lu, time_die: %lu\n", self->id, ft_abs_time(), self->last_meal, (unsigned long)self->data->time_die);
-		// printf("ID: %d, ABS_time - l_meal: %lu > time_die: %lu\n", self->id, (ft_abs_time() - self->last_meal), (unsigned long)self->data->time_die);
-
 		if (ft_check_die(self) != SUCCESS)
 		{
 			ft_print(self, "DIED");
@@ -72,7 +69,7 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 				ft_print (&philos_array[i], "died");
 				return (FAILURE); // ! Philo dies
 			}
-			usleep (200);
+			usleep (50);
 			i++;
 		}
 		
@@ -93,7 +90,6 @@ static int	ft_set_are_done(t_philo *p_a, t_philo *self, t_data *data, unsigned l
 	return (FAILURE);
 }
 
-// void		ft_done(t_data *data)
 static int	ft_all_done(t_philo *p_a, t_data *data)
 {
 	int		i;
@@ -132,7 +128,6 @@ static int	ft_set_is_dead(t_data *data, unsigned long l_meal)
 		ft_died(data); // ! Destroy threads
 		return (SUCCESS);
 	}
-	// usleep(50);
 	return (FAILURE);
 }
 
