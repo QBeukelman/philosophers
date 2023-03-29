@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/29 10:19:49 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/03/29 11:52:09 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,25 @@ int		main(int argc, char *argv[])
 	// Init
 	data = malloc(sizeof(t_philo));
 	data = ft_init_data(data, argc, argv);
+	if (data == NULL)
+	{
+		// ! Free
+		return (EXIT_FAILURE);
+	}
 
 	philos_array = malloc(sizeof(t_philo) * data->philo_nb);
 	philos_array = ft_init_philo(philos_array, data);
+	if (philos_array == NULL)
+	{
+		// ! Free
+		return (EXIT_FAILURE);
+	}
 
 	printf("Philo[0]->data->nbr: %d\n", philos_array[0].data->philo_nb);
 	ft_simulator (philos_array, data);
 
-	// free (data);
-	// free (philos_array);
+	free (data);
+	free (philos_array);
 	return (EXIT_SUCCESS);
 }
 
