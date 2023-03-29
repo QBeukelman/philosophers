@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/29 12:29:11 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/03/29 13:19:16 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 			l_meal = philos_array[i].last_meal;
 			pthread_mutex_unlock(&data->mutex[MEALS]);
 
-			// if (ft_set_are_done(philos_array, &philos_array[i], data, l_meal) == SUCCESS)
-			// 	return (printf("ALL PHILOS DONE\n"), FAILURE); // ! All philos done
+			if (ft_set_are_done(philos_array, &philos_array[i], data, l_meal) == SUCCESS)
+				return (printf("ALL PHILOS DONE\n"), FAILURE); // ! All philos done
 			
 			if (ft_set_is_dead(data, l_meal) == SUCCESS)
 			{

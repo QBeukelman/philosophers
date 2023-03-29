@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:19:34 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/29 11:54:34 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/03/29 13:17:15 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ unsigned long	ft_abs_time(void)
 
 	if (gettimeofday(&time, NULL) == -1)
 		write (2, "ERROR: gettimeofday(2).\n", 24);
-	s = time.tv_sec + 1000;
+	s = time.tv_sec * 1000;
 	u = time.tv_usec / 1000;
 	return (s + u);
 }
