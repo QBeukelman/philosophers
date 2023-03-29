@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/29 10:01:23 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/03/29 10:19:49 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int		main(int argc, char *argv[])
 	printf("Philo[0]->data->nbr: %d\n", philos_array[0].data->philo_nb);
 	ft_simulator (philos_array, data);
 
-	free (data);
-	free (philos_array);
+	// free (data);
+	// free (philos_array);
 	return (EXIT_SUCCESS);
 }
 

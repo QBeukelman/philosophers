@@ -88,7 +88,7 @@ void			ft_print(t_philo *philos_array, char *str);
 
 
 // ===== [ time utils ] =====
-unsigned long	ft_abs_time(void);
+unsigned long long	ft_abs_time(void);
 unsigned long	ft_rel_time(unsigned long begin);
 void			ft_msleep(unsigned long msec);
 

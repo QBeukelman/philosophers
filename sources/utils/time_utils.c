@@ -6,13 +6,13 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:19:34 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/23 09:25:51 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/29 10:49:14 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-unsigned long	ft_abs_time(void)
+unsigned long long	ft_abs_time(void)
 {
 	struct timeval		time;
 	unsigned long		s;

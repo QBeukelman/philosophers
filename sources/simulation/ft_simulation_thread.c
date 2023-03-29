@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/29 10:12:36 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/03/29 10:38:21 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,8 @@ void		*ft_simulation_thread(void *arg)
 
 	self = (t_philo *)arg;
 
-	// When a philo treis to pick up fork, 
-	// it executes a wait() operation on that semaphore.
-
-
-	// Every second philo waits to start eating
 	if (self->id % 2 == 0)
 	{
-		// usleep (200);
 		ft_print(self, "is thinking");
 		ft_msleep(self->data->time_eat);
 	}
@@ -69,7 +63,7 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 				ft_print (&philos_array[i], "died");
 				return (FAILURE); // ! Philo dies
 			}
-			usleep (50);
+			// usleep (50);
 			i++;
 		}
 		
