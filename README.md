@@ -69,3 +69,24 @@ make
 
 <br />
 
+
+# Performance
+
+### CPU
+
+Run top or htop to view the cpu to see which processes utilize CPU at that moment. It is useful to allow the philosophers to eat for a long time, giving us time to analyse the open process, use the below, or a similar input.
+
+```bash
+./philo 5 1000 100 100
+```
+
+Open a seperate terminal and run
+
+
+```bash
+top
+htop
+```
+
+<br />
+
