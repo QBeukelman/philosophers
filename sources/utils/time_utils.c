@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:19:34 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/30 09:50:15 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/30 10:56:16 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ unsigned long	ft_abs_time(void)
 }
 
 unsigned long	ft_rel_time(unsigned long begin)
-// This is because man usleep says that usleep will sleep at least n milliseconds
 {
 	unsigned long	abs_time;
 
@@ -35,6 +34,7 @@ unsigned long	ft_rel_time(unsigned long begin)
 }
 
 void	ft_msleep(unsigned long msec)
+// This is because man usleep says that usleep will sleep at least n milliseconds
 {
     struct timeval tv;
     gettimeofday(&tv, NULL);
