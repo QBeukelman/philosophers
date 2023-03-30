@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/18 10:59:48 by qbeukelm      #+#    #+#                  #
-#    Updated: 2023/03/29 09:54:34 by qbeukelm      ########   odam.nl          #
+#    Updated: 2023/03/30 09:28:08 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CFLAGS = # ! ADD C FLAGS
 # ===== Colors =====
 BOLD	:= \033[1m
 RED		:= \033[31;1m
-iGREEN	:= \033[32;1m
+GREEN	:= \033[32;1m
 YELLOW	:= \033[33;1m
 BLUE	:= \033[34;1m
 RESET	:= \033[0m
