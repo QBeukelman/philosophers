@@ -53,7 +53,7 @@ make
 # Usage
 
 ```c
-./philo 5  800 100 100  5
+./philo 5  400 100 100  5
         +---|---|---|---|-- philo_nb
             +---|---|---|-- time_die
                 +---|---|-- time_eat
@@ -74,10 +74,10 @@ make
 
 ### CPU
 
-Run top or htop to view the cpu to see which processes utilize CPU at that moment. It is useful to allow the philosophers to eat for a long time, giving us time to analyse the open process, use the below, or a similar input.
+Run top (table of processes) or htop to view the cpu to see which processes utilize CPU at that moment. It is useful to allow the philosophers to eat for a long time, giving us time to analyse the open process, use the below, or a similar input.
 
 ```bash
-./philo 5 1000 100 100
+./philo 5 400 100 100 5
 ```
 
 Open a seperate terminal and run
@@ -100,7 +100,7 @@ For every philosopher a thread is created using pthread_create(), which accepts 
 <pre>
 
                       │    time_die
-                      │    800 ms
+                      │    400 ms
                       │
                       │
             ┌─────┐   │ │  time_think

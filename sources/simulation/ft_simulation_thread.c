@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/30 12:00:53 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/30 12:56:09 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,8 @@ void		*ft_simulation_thread(void *arg)
 
 	while (1)
 	{
-		if (ft_check_die(self) != SUCCESS)
-		{
-			ft_print(self, "DIED");
+		if (ft_check_die(self) == TRUE)
 			break ;
-		}
 		if (ft_eating(self) != SUCCESS)
 			break ;
 		ft_sleep(self);
@@ -46,11 +43,12 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 	int				i;
 	unsigned long	l_meal;
 	
+	i = 0;
 	while (1)
 	{
-		i = 0;
-		while (i < data->philo_nb)
-		{
+		// i = 0;
+		// while (i < data->philo_nb)
+		// {
 			pthread_mutex_lock(&data->mutex[MEALS]);
 			l_meal = philos_array[i].last_meal;
 			pthread_mutex_unlock(&data->mutex[MEALS]);
@@ -64,36 +62,20 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 				ft_print (&philos_array[i], "died");
 				return (FAILURE); // ! Philo dies
 			}
-			// usleep(200);
-			i++;
-		}
+			i = (i + 1) % data->philo_nb;
+			usleep(50);
+		// }
 		// usleep(200);
 	}
 
 	return (SUCCESS);
 }
 
-// ===== [ done ] =====
-// static int	ft_self_is_done(t_philo *self)
-// {
-// 	int		meals_count;
-
-// 	pthread_mutex_lock(&self->data->mutex[MEALS]);
-// 	meals_count = self->meal_counter;
-// 	pthread_mutex_unlock(&self->data->mutex[MEALS]);
-
-// 	if (meals_count == self->data->must_eat)
-// 	{
-// 		return (SUCCESS);
-// 	}
-// 	return (FALSE);
-// }
-
 static int	ft_set_are_done(t_philo *p_a, t_data *data, unsigned long l_meal)
 {
 	if (l_meal && ft_all_done(p_a, data) == TRUE)
 	{
-		// ft_done(data); // ! Destroy threads
+		ft_done(data); // ! Destroy threads
 		return (SUCCESS); // ! All philos done
 	}
 
@@ -121,13 +103,9 @@ static int	ft_all_done(t_philo *p_a, t_data *data)
 		{
 			if (count_success == (data->philo_nb - 1))
 			{
-				pthread_mutex_lock(&p_a->data->mutex[DONE]);
-				data->done = TRUE;
-				pthread_mutex_unlock(&p_a->data->mutex[DONE]);
 				return (TRUE);
 			}
 			usleep(50);
-			// printf("Count success: %d\n", count_success);
 			count_success++;
 		}
 		i++;
@@ -135,12 +113,16 @@ static int	ft_all_done(t_philo *p_a, t_data *data)
 	return (FALSE);
 }
 
+void	ft_done(t_data *data)
+{
+	pthread_mutex_lock (&data->mutex[DONE]);
+	data->done = TRUE;
+	pthread_mutex_unlock (&data->mutex[DONE]);
+}
+
 // ===== [ died ] =====
 static int	ft_set_is_dead(t_data *data, unsigned long l_meal)
 {
-	// if (l_meal > ft_abs_time()) // Avoid negative
-	// 	return (FAILURE);
-
 	if (l_meal && (ft_abs_time() - l_meal) > (unsigned long)data->time_die)
 	{
 		ft_died(data); // ! Destroy threads
@@ -161,8 +143,8 @@ int		ft_check_die(t_philo *self)
 	pthread_mutex_lock(&self->data->mutex[DIED]);
 	if (self->data->died == TRUE)
 	{
-		return (FALSE);
+		return (TRUE);
 	}
 	pthread_mutex_unlock(&self->data->mutex[DIED]);
-	return (SUCCESS);
+	return (FALSE);
 }
