@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:07 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/31 08:22:50 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/31 13:56:12 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,15 @@ int		ft_simulator(t_philo *philos_array, t_data *data)
 		}
 		i++;
 	}
+	
 
 	// ! Monitoring
 	if (ft_observe_thread(philos_array, data) != SUCCESS)
 	{
 		ft_destroy_mutexes(philos_array, data);
+		usleep(200);
+		if (data->done == TRUE)
+			ft_printf_all_done(philos_array);
 		(void)free (th);
 		return (FAILURE); // Destroy mutex
 	}

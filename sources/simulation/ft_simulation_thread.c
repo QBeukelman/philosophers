@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/31 11:42:27 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/31 13:58:14 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,20 +53,16 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 		pthread_mutex_unlock(&data->mutex[MEALS]);
 
 		if (ft_set_are_done(philos_array, data, l_meal) == SUCCESS)
-		{
-			ft_printf_all_done(&philos_array[i]);
 			return (FAILURE); // ! All philos done
-		}
 		if (ft_set_is_dead(data, l_meal) == SUCCESS)
 		{
 			ft_printf_died(&philos_array[i]);
 			return (FAILURE); // ! Philo dies
 		}
 		i = (i + 1) % data->philo_nb;
-		// usleep(50);
 	}
 
-	return (SUCCESS);
+	return (-1);
 }
 
 static int	ft_set_are_done(t_philo *p_a, t_data *data, unsigned long l_meal)
@@ -96,12 +92,8 @@ static int	ft_all_done(t_philo *p_a, t_data *data)
 		pthread_mutex_lock(&p_a->data->mutex[MEALS]);
 		meals_count = p_a[i].meal_counter;
 		pthread_mutex_unlock(&p_a->data->mutex[MEALS]);
-	
 		if (meals_count >= data->must_eat)
 			count_success++;
-		// usleep(200);
-
-		// printf("ID: %d, eaten: %d, count: %d\n", p_a[i].id, meals_count, count_success);
 		i++;
 	}
 	if (count_success == (data->philo_nb))
