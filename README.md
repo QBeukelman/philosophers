@@ -6,7 +6,6 @@
 
 <br />
 
-
 In Computer Science, the dining philosophers problem is an example often used in concurrent algorithm design to illustrate synchronization issues and techniques for resolving them. The example is summarized as follows, and will serve as the rules of the program.
 
 A round table is occupied by one or more philosophers. The center of the table holds a large bowl of spaghetti. The philosophers engage in a cycle of eating, thinking, and sleeping. While eating, they cannot think or sleep. While thinking, they cannot eat or sleep. And while sleeping, they cannot eat or think.
@@ -17,7 +16,6 @@ Forks, equal in number to the philosophers, are also present on the table. As it
 ### Problems
 
 - **Deadlock** each of the philosophers pick up a fork, no one can eat, hence, a deadlock.
-
 - **Starvation** if a philosopher is not able to eat within the time limit, the philosopher may die.
 
 
