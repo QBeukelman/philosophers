@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/31 10:00:35 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/31 14:17:24 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ pthread_mutex_unlock
 
  */
 
+
+// ! ./philo 1 1 1 1
+// ! must_eat = 0
+// ! philo count = 1 
+
+
 #include "../includes/philo.h"
 
 int		main(int argc, char *argv[])
@@ -53,8 +59,8 @@ int		main(int argc, char *argv[])
 	t_data			*data;
 	
 	
-	if (ft_check_args(argc, argv) != SUCCESS) // ! must_eat = 0; philo count = 1;
-		return (printf("Check args: FAILURE\n"), EXIT_FAILURE);
+	if (ft_check_args(argc, argv) != SUCCESS) 
+		return (EXIT_FAILURE);
 
 	// Init
 	data = malloc(sizeof(t_philo));

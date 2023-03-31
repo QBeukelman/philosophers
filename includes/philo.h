@@ -87,6 +87,7 @@ long int		ft_atol(char *str);
 void			ft_print(t_philo *philos_array, char *str);
 void			ft_printf_all_done(t_philo *self);
 void			ft_printf_died(t_philo *self);
+void			ft_print_error(char *str);
 
 
 // ===== [ time utils ] =====

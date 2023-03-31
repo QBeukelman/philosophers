@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 09:59:49 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/31 10:19:02 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/31 14:07:49 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,9 @@ void	ft_printf_died(t_philo *self)
 		ft_rel_time(self->data->sim_begin), 
 		self->id, 
 		"died");
+}
+
+void	ft_print_error(char *str)
+{
+	printf("\033[31;1m%s\033[0m\n", str);
 }

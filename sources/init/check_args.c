@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:58:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/23 09:29:20 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/31 14:18:15 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,38 @@ int		ft_check_args(int argc, char *argv[])
 	// Check arg count
 	if (argc < 5)
 	{
-		write (2, "Error: Too few arguments.\n", 26);
+		ft_print_error("Error: Too few arguments.");
 		return (FAILURE);
 	}
 	if (argc > 6)
 	{
-		write (2, "Error: Too many arguments.\n", 27);
+		ft_print_error("Error: Too many arguments.");
 		return (FAILURE);
+	}
+	if ((int)ft_atol(argv[1]) == 1)
+	{
+		ft_print_error("Error: Number of philosophers must be greater than 1.");
+		return (FAILURE);
+	}
+	if (argc == 6)
+	{
+		if ((int)ft_atol(argv[5]) == 0)
+		{
+			ft_print_error("Error: Must eat may not be 0.");
+			return (FAILURE);
+		}
 	}
 	
 	while (argc-- > 1)
 	{
 		if (ft_is_numberic(argv[argc]) == FALSE)
 		{
-			write (2, "Error: Invalid character.\n", 26);
+			ft_print_error("Error: Invalid character.");
 			return (FAILURE);
 		}
 		if (ft_atol(argv[argc]) > INT_MAX || ft_atol(argv[argc]) < 0)
 		{
-			write (2, "Error: Value out of range.\n", 27);
+			ft_print_error("Error: Value out of range.");
 			return (FAILURE);
 		}
 	}
