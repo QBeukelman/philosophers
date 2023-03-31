@@ -7,8 +7,7 @@
 <br />
 
 
-In Computer Science, the dining philosophers problem is an example often used in concurrent algorithm design to illustrate synchronization issues and techniques
-for resolving them. The example is summerised as followes, and will serve as the rules of the program.
+In Computer Science, the dining philosophers problem is an example often used in concurrent algorithm design to illustrate synchronization issues and techniques for resolving them. The example is summarized as follows, and will serve as the rules of the program.
 
 A round table is occupied by one or more philosophers. The center of the table holds a large bowl of spaghetti. The philosophers engage in a cycle of eating, thinking, and sleeping. While eating, they cannot think or sleep. While thinking, they cannot eat or sleep. And while sleeping, they cannot eat or think.
 
@@ -74,7 +73,7 @@ make
 
 ### CPU
 
-Run top (table of processes) or htop to view the cpu to see which processes utilize CPU at that moment. It is useful to allow the philosophers to eat for a long time, giving us time to analyse the open process, use the below, or a similar input.
+Run top (table of processes) or htop to view the CPU to see which processes utilize CPU at that moment. It is useful to allow the philosophers to eat for a long time, giving us time to analyze the open process, use the below, or a similar input.
 
 ```bash
 ./philo 5 400 100 100 5
@@ -93,9 +92,9 @@ htop
 
 # How it works
 
-Each philosopher is represented by an instance of t_philo struct, and contains one fork, as pthread_mutex_t. Each t_philo contains a pointer to t_data, the environment variables.
+Each philosopher is represented by an instance of t_philo struct and contains one fork, as pthread_mutex_t. Each t_philo contains a pointer to t_data, the environment variables.
 
-For every philosopher a thread is created using pthread_create(), which accepts the ft_simulation_thread() function, representing the philosophers lifecycle, to run in each thread. The philosohpers lifecycle is shown below.
+For every philosopher, a thread is created using pthread_create(), which accepts the ft_simulation_thread() function, representing the philosopher's lifecycle, to run in each thread. The philosopher's lifecycle is shown below.
 
 <pre>
 
@@ -123,7 +122,7 @@ Eating      │  P  │   │ │  100 ms
 <br />
 
 
-The input below will produce this result. Notice that philosopher 1 has eaten 6 times. If must_eat is provided, a philosopher should eat at least must_eat times. Additionally, a philosopher; dispite having to think to complete its lifecycle, can think for any amout of time. This explains why philosopher one, having eaten and slept, can begin eating directly after beginning to think.
+The input below will produce this result. Notice that philosopher 1 has eaten 6 times. If must_eat is provided, a philosopher should eat at least must_eat times. Additionally, a philosopher, despite having to think to complete its lifecycle, can think for any amount of time. This explains why philosopher one, having eaten and slept, can begin eating directly after beginning to think.
 
 ```bash
 ./philo 5 400 100 100 5
