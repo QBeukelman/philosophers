@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/31 08:56:44 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/31 09:42:22 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,11 @@ static int	ft_all_done(t_philo *p_a, t_data *data)
 	
 		if (meals_count == data->must_eat)
 			count_success++;
-		usleep(50);
+		
+		usleep(200);
 		i++;
 	}
-	if (count_success == (data->philo_nb - 1))
+	if (count_success == (data->philo_nb))
 		return (TRUE);
 	return (FALSE);
 }
