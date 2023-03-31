@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/23 11:39:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2023/03/30 12:19:04 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/31 09:01:06 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	ft_eating(t_philo *self)
 {
-	// Start
-	if (ft_start_eating(self) != SUCCESS)
+	if (ft_start_eating(self) == SUCCESS)
+	{
+		pthread_mutex_lock(&self->data->mutex[MEALS]);
+		self->last_meal = ft_abs_time ();
+		self->meal_counter++;
+		pthread_mutex_unlock(&self->data->mutex[MEALS]);
+	}
+	else
 		return (FAILURE);
-
-	pthread_mutex_lock(&self->data->mutex[MEALS]);
-	self->last_meal = ft_abs_time ();
-	self->meal_counter++;
-	pthread_mutex_unlock(&self->data->mutex[MEALS]);
-
 	return (SUCCESS);
 }
 
