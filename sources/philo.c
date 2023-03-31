@@ -6,13 +6,14 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/29 11:52:09 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/03/31 10:00:35 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* 
 Viz - https://github.com/nafuka11/philosophers-visualizer
 Eg - https://github.com/clemedon/philosophers
+Test - https://github.com/MichelleJiam/LazyPhilosophersTester
 Diagrams - https://www.youtube.com/watch?v=V73F3kDSkgs
 Article - https://begriffs.com/posts/2020-03-23-concurrent-programming.html
 Article - https://www.codequoi.com/en/threads-mutexes-and-concurrent-programming-in-c/
@@ -52,11 +53,8 @@ int		main(int argc, char *argv[])
 	t_data			*data;
 	
 	
-	if (ft_check_args(argc, argv) == SUCCESS) // must_eat = 0; philo count = 1;
-		printf("Check args: SUCCESS\n");
-	else
-		printf("Check args: FAILURE\n");
-
+	if (ft_check_args(argc, argv) != SUCCESS) // ! must_eat = 0; philo count = 1;
+		return (printf("Check args: FAILURE\n"), EXIT_FAILURE);
 
 	// Init
 	data = malloc(sizeof(t_philo));
@@ -75,7 +73,6 @@ int		main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	}
 
-	printf("Philo[0]->data->nbr: %d\n", philos_array[0].data->philo_nb);
 	ft_simulator (philos_array, data);
 
 	free (data);

@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/31 09:42:22 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/31 11:42:27 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void		*ft_simulation_thread(void *arg)
 			break ;
 		if (ft_eating(self) != SUCCESS)
 			break ;
+		if (ft_is_done(self) == TRUE)
+			break ;
 		if (ft_sleep(self) == SUCCESS)
 			ft_think(self);
 	}
@@ -52,15 +54,16 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 
 		if (ft_set_are_done(philos_array, data, l_meal) == SUCCESS)
 		{
-			return (printf("ALL PHILOS DONE\n"), FAILURE); // ! All philos done
+			ft_printf_all_done(&philos_array[i]);
+			return (FAILURE); // ! All philos done
 		}
 		if (ft_set_is_dead(data, l_meal) == SUCCESS)
 		{
-			ft_print (&philos_array[i], "died");
+			ft_printf_died(&philos_array[i]);
 			return (FAILURE); // ! Philo dies
 		}
 		i = (i + 1) % data->philo_nb;
-		usleep(50);
+		// usleep(50);
 	}
 
 	return (SUCCESS);
@@ -84,7 +87,7 @@ static int	ft_all_done(t_philo *p_a, t_data *data)
 	int		meals_count;
 
 	if (data->must_eat == -1)
-		return (printf("ft_all_done(), must_eat == -1\n"), FAILURE);
+		return (FALSE);
 
 	i = 0;
 	count_success = 0;
@@ -94,10 +97,11 @@ static int	ft_all_done(t_philo *p_a, t_data *data)
 		meals_count = p_a[i].meal_counter;
 		pthread_mutex_unlock(&p_a->data->mutex[MEALS]);
 	
-		if (meals_count == data->must_eat)
+		if (meals_count >= data->must_eat)
 			count_success++;
-		
-		usleep(200);
+		// usleep(200);
+
+		// printf("ID: %d, eaten: %d, count: %d\n", p_a[i].id, meals_count, count_success);
 		i++;
 	}
 	if (count_success == (data->philo_nb))

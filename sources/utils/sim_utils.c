@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 09:59:49 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/30 11:47:29 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/03/31 10:19:02 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,20 @@ void	ft_print(t_philo *self, char *str)
 		" \e[1;34m%s\e[0m\n", 
 		ft_rel_time(self->data->sim_begin), 
 		self->id, str);
+}
 
-	// printf("ID: %d,		meals: %d,		must_eat: %d\n", self->id, self->meal_counter, self->data->must_eat);
+void	ft_printf_all_done(t_philo *self)
+{
+	printf("%lu \033[32;1m%s\033[0m",
+			ft_rel_time(self->data->sim_begin),
+			"All philosphoers done\n");	
+}
+
+void	ft_printf_died(t_philo *self)
+{
+	printf ("%lu %d"
+		" \033[31;1m%s\033[0m\n",
+		ft_rel_time(self->data->sim_begin), 
+		self->id, 
+		"died");
 }

@@ -85,6 +85,8 @@ long int		ft_atol(char *str);
 
 // ===== [ sim utils ] =====
 void			ft_print(t_philo *philos_array, char *str);
+void			ft_printf_all_done(t_philo *self);
+void			ft_printf_died(t_philo *self);
 
 
 // ===== [ time utils ] =====
@@ -121,6 +123,6 @@ int		ft_think(t_philo *self);
 int		ft_think_forever(t_philo *self);
 int		ft_max(int a, int b);
 int		ft_min(int a, int b);
-int		ft_check_done(t_philo *self);
+int		ft_is_done(t_philo *self);
 
 #endif
