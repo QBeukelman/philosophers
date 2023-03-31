@@ -65,7 +65,7 @@ make
 - `time_to_die`: The time in milliseconds after which a philosopher dies of starvation.
 - `time_to_eat`: The time in milliseconds it takes for a philosopher to eat.
 - `time_to_sleep`: The time in milliseconds it takes for a philosopher to sleep.
-- `must_eat`: Optional argument. The number of times each philosopher must eat before the simulation ends. If not specified, the simulation runs until a philosopher dies or is interrupted.
+- `must_eat`: Optional argument. A philosopher should eat at least must_eat times before the simulation ends. If not specified, the simulation runs until a philosopher dies or is interrupted.
 
 <br />
 
@@ -122,3 +122,16 @@ Eating      │  P  │   │ │  100 ms
 
 <br />
 
+
+The input below will produce this result. Notice that philosopher 1 has eaten 6 times. If must_eat is provided, a philosopher should eat at least must_eat times. Additionally, a philosopher; dispite having to think to complete its lifecycle, can think for any amout of time. This explains why philosopher one, having eaten and slept, can begin eating directly after beginning to think.
+
+```bash
+./philo 5 400 100 100 5
+```
+
+<br />
+
+
+![alt text](https://uploads-ssl.webflow.com/60255c87f21230edfb5fa38e/6426d895101d42100dc0b9e5_philosophers_viz.png)
+
+<br />
