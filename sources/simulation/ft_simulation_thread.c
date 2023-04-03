@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/31 13:58:14 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/03 10:43:56 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int			ft_observe_thread(t_philo *philos_array, t_data *data)
 			ft_printf_died(&philos_array[i]);
 			return (FAILURE); // ! Philo dies
 		}
+		usleep(50);
 		i = (i + 1) % data->philo_nb;
 	}
 

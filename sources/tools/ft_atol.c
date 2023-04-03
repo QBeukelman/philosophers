@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/20 09:45:32 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2023/03/23 09:27:52 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/03 10:48:51 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 long	int_add_sign(int sign, long int val);
 int		ft_isspace(char c);
 int		ft_isdigit(int c);
-
 
 long int	ft_atol(char *str)
 {

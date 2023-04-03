@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/23 11:39:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2023/03/31 11:01:36 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/03 10:49:55 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,23 @@ int	ft_start_eating(t_philo *self)
 {
 	pthread_mutex_lock(&self->fork[ft_min(self->l_fork, self->r_fork)]);
 	pthread_mutex_lock(&self->fork[ft_max(self->l_fork, self->r_fork)]);
-
-	// If L == R (Fail)
 	ft_print(self, "has taken a fork");
 	ft_print(self, "has taken a fork");
 	ft_print(self, "is eating");
-
-	// Wait
 	ft_msleep(self->data->time_eat);
-
-	// finish eating
 	ft_finish_eating(self);
 	return (SUCCESS);
 }
 
-int		ft_finish_eating(t_philo *self)
+int	ft_finish_eating(t_philo *self)
 {
 	pthread_mutex_unlock(&self->fork[ft_min(self->l_fork, self->r_fork)]);
 	pthread_mutex_unlock(&self->fork[ft_max(self->l_fork, self->r_fork)]);
 	return (SUCCESS);
 }
 
-
 // ===== [ sleep ] =====
-int		ft_sleep(t_philo *self)
+int	ft_sleep(t_philo *self)
 {
 	ft_print(self, "is sleeping");
 	ft_msleep(self->data->time_sleep);
@@ -61,14 +54,14 @@ int		ft_sleep(t_philo *self)
 }
 
 // ===== [ think ] =====
-int		ft_think(t_philo *self)
+int	ft_think(t_philo *self)
 {
 	ft_print(self, "is thinking");
 	ft_msleep(self->data->time_think);
 	return (SUCCESS);
 }
 
-int		ft_think_forever(t_philo *self)
+int	ft_think_forever(t_philo *self)
 {
 	ft_print(self, "is thinking");
 	while (1)
@@ -77,7 +70,7 @@ int		ft_think_forever(t_philo *self)
 }
 
 // ===== [ done ] =====
-int		ft_is_done(t_philo *self)
+int	ft_is_done(t_philo *self)
 {
 	pthread_mutex_lock(&self->data->mutex[DONE]);
 	if (self->data->done)
@@ -88,7 +81,6 @@ int		ft_is_done(t_philo *self)
 	pthread_mutex_unlock(&self->data->mutex[DONE]);
 	return (FALSE);
 }
-
 
 int	ft_max(int a, int b)
 {
