@@ -6,13 +6,13 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/03 11:02:16 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/04/03 11:17:45 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-void		*ft_simulation_thread(void *arg)
+void	*ft_sim_thread(void *arg)
 {
 	t_philo		*self;
 
@@ -33,34 +33,31 @@ void		*ft_simulation_thread(void *arg)
 		if (ft_sleep(self) == SUCCESS)
 			ft_think(self);
 	}
-	
 	return (NULL);
 }
 
 // ===== [ observe ] =====
-int			ft_observe_thread(t_philo *philos_array, t_data *data)
+int	ft_observe_thread(t_philo *philos_array, t_data *data)
 {
 	int				i;
 	unsigned long	l_meal;
-	
+
 	i = 0;
 	while (1)
 	{
 		pthread_mutex_lock(&data->mutex[MEALS]);
 		l_meal = philos_array[i].last_meal;
 		pthread_mutex_unlock(&data->mutex[MEALS]);
-
 		if (ft_set_are_done(philos_array, data, l_meal) == SUCCESS)
-			return (FAILURE); // ! All philos done
+			return (FAILURE);
 		if (ft_set_is_dead(data, l_meal) == SUCCESS)
 		{
 			ft_printf_died(&philos_array[i]);
-			return (FAILURE); // ! Philo dies
+			return (FAILURE);
 		}
 		usleep(50);
 		i = (i + 1) % data->philo_nb;
 	}
-
 	return (-1);
 }
 
@@ -68,10 +65,9 @@ static int	ft_set_are_done(t_philo *p_a, t_data *data, unsigned long l_meal)
 {
 	if (l_meal && ft_all_done(p_a, data) == TRUE)
 	{
-		ft_done(data); // ! Destroy threads
-		return (SUCCESS); // ! All philos done
+		ft_done(data);
+		return (SUCCESS);
 	}
-
 	return (FAILURE);
 }
 
@@ -83,7 +79,6 @@ static int	ft_all_done(t_philo *p_a, t_data *data)
 
 	if (data->must_eat == -1)
 		return (FALSE);
-
 	i = 0;
 	count_success = 0;
 	while (i < data->philo_nb)
@@ -105,33 +100,4 @@ void	ft_done(t_data *data)
 	pthread_mutex_lock (&data->mutex[DONE]);
 	data->done = TRUE;
 	pthread_mutex_unlock (&data->mutex[DONE]);
-}
-
-// ===== [ died ] =====
-static int	ft_set_is_dead(t_data *data, unsigned long l_meal)
-{
-	if (l_meal && (ft_abs_time() - l_meal) > (unsigned long)data->time_die)
-	{
-		ft_died(data); // ! Destroy threads
-		return (SUCCESS);
-	}
-	return (FAILURE);
-}
-
-void	ft_died(t_data *data)
-{
-	pthread_mutex_lock (&data->mutex[DIED]);
-	data->died = TRUE;
-	pthread_mutex_unlock (&data->mutex[DIED]);
-}
-
-int		ft_check_die(t_philo *self)
-{
-	pthread_mutex_lock(&self->data->mutex[DIED]);
-	if (self->data->died == TRUE)
-	{
-		return (TRUE);
-	}
-	pthread_mutex_unlock(&self->data->mutex[DIED]);
-	return (FALSE);
 }
