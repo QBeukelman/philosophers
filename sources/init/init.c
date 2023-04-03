@@ -6,14 +6,14 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 08:48:11 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/03 09:53:17 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/04/03 11:01:51 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
 // ===== [ PHILO ] =====
-t_philo		*ft_init_philo(t_philo *philos_array, t_data *data)
+t_philo	*ft_init_philo(t_philo *philos_array, t_data *data)
 {
 	int					i;
 	pthread_mutex_t		*fork;
@@ -24,30 +24,36 @@ t_philo		*ft_init_philo(t_philo *philos_array, t_data *data)
 		ft_print_error("ERROR: Not enough memory to perform malloc().");
 		return (free (fork), NULL);
 	}
-
 	i = 0;
 	while (i < data->philo_nb)
 	{
 		pthread_mutex_init(&fork[i], NULL);
 		i++;
 	}
+	philos_array = ft_init_helper(philos_array, data, fork);
+	return (philos_array);
+}
+
+t_philo	*ft_init_helper(t_philo *p_a, t_data *data, pthread_mutex_t *fork)
+{
+	int					i;
 
 	i = 0;
 	while (i < data->philo_nb)
 	{
-		philos_array[i].last_meal = data->sim_begin;
-		philos_array[i].id = i + 1;
-		philos_array[i].meal_counter = 0;
-		philos_array[i].l_fork = i;
+		p_a[i].last_meal = data->sim_begin;
+		p_a[i].id = i + 1;
+		p_a[i].meal_counter = 0;
+		p_a[i].l_fork = i;
 		if (i - 1 < 0)
-			philos_array[i].r_fork = data->philo_nb - 1;
+			p_a[i].r_fork = data->philo_nb - 1;
 		else
-			philos_array[i].r_fork = i - 1;
-		philos_array[i].fork = fork;
-		philos_array[i].data = data;
+			p_a[i].r_fork = i - 1;
+		p_a[i].fork = fork;
+		p_a[i].data = data;
 		i++;
 	}
-	return (philos_array);
+	return (p_a);
 }
 
 // ===== [ DATA ] =====
@@ -67,14 +73,11 @@ t_data	*ft_init_data(t_data *data, int argc, char *argv[])
 		data->must_eat = (int)ft_atol(argv[5]);
 	data->done = FALSE;
 	data->died = FALSE;
-	
-	// init mutex
 	data = ft_init_data_mutexes(data);
-
 	return (data);
 }
 
-t_data		*ft_init_data_mutexes(t_data *data)
+t_data	*ft_init_data_mutexes(t_data *data)
 {
 	int					i;
 	pthread_mutex_t		*mutex;
@@ -89,7 +92,5 @@ t_data		*ft_init_data_mutexes(t_data *data)
 	while (i < data->philo_nb)
 		pthread_mutex_init(&mutex[i++], NULL);
 	data->mutex = mutex;
-	
-	
 	return (data);
 }

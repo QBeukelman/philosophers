@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:58:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/31 14:18:15 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/03 10:52:49 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,28 @@ bool	ft_is_numberic(char *str)
 	return (FALSE);
 }
 
-int		ft_check_args(int argc, char *argv[])
+int	ft_check_args(int argc, char *argv[])
 {
-	// Check arg count
+	if (ft_check_args_helper(argc, argv) != SUCCESS)
+		return (FAILURE);
+	while (argc-- > 1)
+	{
+		if (ft_is_numberic(argv[argc]) == FALSE)
+		{
+			ft_print_error("Error: Invalid character.");
+			return (FAILURE);
+		}
+		if (ft_atol(argv[argc]) > INT_MAX || ft_atol(argv[argc]) < 0)
+		{
+			ft_print_error("Error: Value out of range.");
+			return (FAILURE);
+		}
+	}
+	return (SUCCESS);
+}
+
+int	ft_check_args_helper(int argc, char *argv[])
+{
 	if (argc < 5)
 	{
 		ft_print_error("Error: Too few arguments.");
@@ -49,20 +68,6 @@ int		ft_check_args(int argc, char *argv[])
 		if ((int)ft_atol(argv[5]) == 0)
 		{
 			ft_print_error("Error: Must eat may not be 0.");
-			return (FAILURE);
-		}
-	}
-	
-	while (argc-- > 1)
-	{
-		if (ft_is_numberic(argv[argc]) == FALSE)
-		{
-			ft_print_error("Error: Invalid character.");
-			return (FAILURE);
-		}
-		if (ft_atol(argv[argc]) > INT_MAX || ft_atol(argv[argc]) < 0)
-		{
-			ft_print_error("Error: Value out of range.");
 			return (FAILURE);
 		}
 	}
