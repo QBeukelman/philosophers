@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/31 14:17:24 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/03 10:04:12 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,7 @@ pthread_mutex_unlock
  *          	   +---|---|-- time_eat
  *              	   +---|-- time_sleep
  * 						   +-- must_eat (optional)
-
- *     Where F0 belongs to philo P3.
-
  */
-
-
-// ! ./philo 1 1 1 1
-// ! must_eat = 0
-// ! philo count = 1 
-
 
 #include "../includes/philo.h"
 
@@ -58,31 +49,23 @@ int		main(int argc, char *argv[])
 	t_philo			*philos_array;
 	t_data			*data;
 	
-	
 	if (ft_check_args(argc, argv) != SUCCESS) 
 		return (EXIT_FAILURE);
-
-	// Init
 	data = malloc(sizeof(t_philo));
-	data = ft_init_data(data, argc, argv);
 	if (data == NULL)
 	{
-		// ! Free
-		return (EXIT_FAILURE);
+		ft_print_error("ERROR: Not enough memory to perform malloc().");
+		return (free (data), EXIT_FAILURE);
 	}
-
+	data = ft_init_data(data, argc, argv);
 	philos_array = malloc(sizeof(t_philo) * data->philo_nb);
-	philos_array = ft_init_philo(philos_array, data);
 	if (philos_array == NULL)
 	{
-		// ! Free
-		return (EXIT_FAILURE);
+		ft_print_error("ERROR: Not enough memory to perform malloc().");
+		return (free (data), free (philos_array), EXIT_FAILURE);
 	}
-
+	philos_array = ft_init_philo(philos_array, data);
 	ft_simulator (philos_array, data);
-
-	free (data);
-	free (philos_array);
+	while (1);
 	return (EXIT_SUCCESS);
 }
-

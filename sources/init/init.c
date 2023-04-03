@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 08:48:11 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/31 11:02:34 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/03 09:53:17 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ t_philo		*ft_init_philo(t_philo *philos_array, t_data *data)
 
 	fork = malloc(sizeof(pthread_mutex_t) * ((size_t)data->philo_nb));
 	if (fork == NULL)
-		return (NULL); // ! free
+	{
+		ft_print_error("ERROR: Not enough memory to perform malloc().");
+		return (free (fork), NULL);
+	}
 
 	i = 0;
 	while (i < data->philo_nb)
@@ -78,7 +81,10 @@ t_data		*ft_init_data_mutexes(t_data *data)
 
 	mutex = malloc (sizeof(pthread_mutex_t) * (size_t)data->philo_nb);
 	if (mutex == NULL)
-		return (NULL); // ! Free
+	{
+		ft_print_error("ERROR: Not enough memory to perform malloc().");
+		return (free (mutex), NULL);
+	}
 	i = 0;
 	while (i < data->philo_nb)
 		pthread_mutex_init(&mutex[i++], NULL);

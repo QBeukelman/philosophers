@@ -126,4 +126,8 @@ int		ft_max(int a, int b);
 int		ft_min(int a, int b);
 int		ft_is_done(t_philo *self);
 
+
+// ===== [ move ] =====
+void	ft_free_structs(t_philo *philos_array, t_data *data);
+
 #endif

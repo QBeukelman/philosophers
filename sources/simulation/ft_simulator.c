@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:07 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/03/31 13:56:12 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/03 10:04:49 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ int		ft_simulator(t_philo *philos_array, t_data *data)
 
 	th = malloc (sizeof (pthread_t) * (size_t)data->philo_nb);
 	if (th == NULL)
-		return (FAILURE);
-
+	{
+		ft_print_error("ERROR: Not enough memory to perform malloc().");
+		return (free (th), FAILURE);
+	}
 
 	i = 0;
 	while (i < data->philo_nb)
@@ -38,7 +40,6 @@ int		ft_simulator(t_philo *philos_array, t_data *data)
 		i++;
 	}
 	
-
 	// ! Monitoring
 	if (ft_observe_thread(philos_array, data) != SUCCESS)
 	{
@@ -62,7 +63,7 @@ int		ft_simulator(t_philo *philos_array, t_data *data)
 	// ! Destroy mutex
 	ft_destroy_mutexes(philos_array, data);
 	(void)free (th);
-
+	ft_free_structs(philos_array, data);
 	return (SUCCESS);
 }
 
@@ -76,4 +77,10 @@ static void	ft_destroy_mutexes(t_philo *philo, t_data *data)
 	i = 0;
 	while (i < M_NUM)
 		pthread_mutex_destroy (&data->mutex[i++]);
+}
+
+void	ft_free_structs(t_philo *philos_array, t_data *data)
+{
+	free (data);
+	free (philos_array);
 }
