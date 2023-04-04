@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:07 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/03 11:13:23 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/04/04 09:16:51 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	ft_create_threads(t_philo *philos_array, t_data *data, pthread_t *th)
 	return (SUCCESS);
 }
 
-static void	ft_destroy_mutexes(t_philo *philo, t_data *data)
+void	ft_destroy_mutexes(t_philo *philo, t_data *data)
 {
 	int	i;
 

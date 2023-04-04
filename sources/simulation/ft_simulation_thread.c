@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/03 11:17:45 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/04/04 09:19:07 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_observe_thread(t_philo *philos_array, t_data *data)
 	return (-1);
 }
 
-static int	ft_set_are_done(t_philo *p_a, t_data *data, unsigned long l_meal)
+int	ft_set_are_done(t_philo *p_a, t_data *data, unsigned long l_meal)
 {
 	if (l_meal && ft_all_done(p_a, data) == TRUE)
 	{
@@ -71,7 +71,7 @@ static int	ft_set_are_done(t_philo *p_a, t_data *data, unsigned long l_meal)
 	return (FAILURE);
 }
 
-static int	ft_all_done(t_philo *p_a, t_data *data)
+int	ft_all_done(t_philo *p_a, t_data *data)
 {
 	int		i;
 	int		count_success;
