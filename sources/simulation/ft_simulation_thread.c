@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/04 09:19:07 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/04/04 12:16:11 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,7 @@ void	ft_done(t_data *data)
 {
 	pthread_mutex_lock (&data->mutex[DONE]);
 	data->done = TRUE;
+	// ! Add to struct, which philo died.
+	// ! Catch the death in the main thread, after a delay.
 	pthread_mutex_unlock (&data->mutex[DONE]);
 }

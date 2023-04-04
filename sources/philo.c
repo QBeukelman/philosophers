@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/03 10:45:19 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/04/04 12:18:51 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@
  *              	   +---|-- time_sleep
  * 						   +-- must_eat (optional)
  */
+
+	// ! Add to struct, which philo died.
+	// ! Catch the death in the main thread, after a delay -> ./philo 2 310 200 100
+	
+	// ! It is possible that a philo dies when it shouldn't -> ./philo 1 800 200 200
 
 #include "../includes/philo.h"
 
