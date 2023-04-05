@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/04 12:18:51 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/04/05 10:29:05 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,18 @@
  */
 
 	// ! Add to struct, which philo died.
-	// ! Catch the death in the main thread, after a delay -> ./philo 2 310 200 100
+	// ! Catch the death in the main thread, after a delay
+	// ./philo 2 310 200 100
 	
-	// ! It is possible that a philo dies when it shouldn't -> ./philo 1 800 200 200
+	// ! It is possible that a philo dies when it shouldn't
+	// ./philo 4 800 200 200
+	// ./philo 4 410 200 200
+
+	// ! With flags fsanitize=thread, data race
+	// ./philo 5 800 100 100 5
+
+	// ! With flags fsanitize=thread, leak
+	// ./philo 2 310 200 100
 
 #include "../includes/philo.h"
 
