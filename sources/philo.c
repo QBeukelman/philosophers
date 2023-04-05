@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/05 10:29:05 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/04/05 14:47:50 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 
 	// ! With flags fsanitize=thread, leak
 	// ./philo 2 310 200 100
+
 
 #include "../includes/philo.h"
 
