@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/05 14:47:50 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/07 09:24:37 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@
 	// ! Catch the death in the main thread, after a delay
 	// ./philo 2 310 200 100
 	
-	// ! It is possible that a philo dies when it shouldn't
+	// It is possible that a philo dies when it shouldn't
 	// ./philo 4 800 200 200
 	// ./philo 4 410 200 200
 
-	// ! With flags fsanitize=thread, data race
+	// With flags fsanitize=thread, data race
 	// ./philo 5 800 100 100 5
 
-	// ! With flags fsanitize=thread, leak
+	// With flags fsanitize=thread, leak
 	// ./philo 2 310 200 100
 
 

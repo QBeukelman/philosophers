@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/05 10:25:05 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/04/07 09:15:17 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	*ft_sim_thread(void *arg)
 	{
 		if (ft_check_die(self) == TRUE)
 			break ;
-		if (ft_eating(self) != SUCCESS)
-			break ;
 		if (ft_is_done(self) == TRUE)
+			break ;
+		if (ft_eating(self) != SUCCESS)
 			break ;
 		if (ft_sleep(self) == SUCCESS)
 			ft_think(self);

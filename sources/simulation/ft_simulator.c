@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:07 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/07 08:52:16 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/07 09:18:48 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	ft_simulator(t_philo *philos_array, t_data *data)
 	}
 	if (ft_create_threads(philos_array, data, th) != SUCCESS)
 		return (FAILURE);
-	if (ft_iniciate_observe(philos_array, data, th) != SUCCESS)
-		return (FAILURE);
+	ft_iniciate_observe(philos_array, data, th);
+	
 	i = 0;
 	while (i < data->philo_nb)
 	{
