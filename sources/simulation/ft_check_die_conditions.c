@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_check_end_conditions.c                          :+:    :+:            */
+/*   ft_check_die_conditions.c                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/03 11:17:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/07 10:04:47 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/07 13:31:44 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-// ===== [ died ] =====
-int	ft_set_is_dead(t_philo *p_a, t_data *data, unsigned long l_meal)
+void	ft_died(t_philo *philos_array, t_data *data)
 {
-	if (l_meal && (ft_abs_time() - l_meal) > (unsigned long)data->time_die)
-	{
-		data->id_died = p_a->id;
-		data->time_of_death = ft_rel_time(p_a->data->sim_begin);
-		
-		ft_died(data);
-		return (SUCCESS);
-	}
-	return (FAILURE);
-}
+	data->id_died = philos_array->id;
+	data->time_of_death = ft_rel_time(philos_array->data->sim_begin);
 
-void	ft_died(t_data *data)
-{
 	pthread_mutex_lock (&data->mutex[DIED]);
 	data->died = TRUE;
 	pthread_mutex_unlock (&data->mutex[DIED]);

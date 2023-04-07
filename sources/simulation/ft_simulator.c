@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:07 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/07 10:07:34 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/07 13:56:39 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,11 @@ int	ft_simulator(t_philo *philos_array, t_data *data)
 	return (SUCCESS);
 }
 
-void	ft_exit(t_philo *philos_array, t_data *data, pthread_t *th)
-{
-	ft_destroy_mutexes(philos_array, data);
-	(void)free (th);
-	ft_free_structs(philos_array, data);
-}
 
 int	ft_iniciate_observe(t_philo *philos_array, t_data *data, pthread_t *th)
 {
 	if (ft_observe_thread(philos_array, data) != SUCCESS)
-	{
+	{	
 		if (data->done == TRUE)
 			ft_printf_all_done(philos_array);
 		if (data->died == TRUE)
@@ -80,22 +74,4 @@ int	ft_create_threads(t_philo *philos_array, t_data *data, pthread_t *th)
 		i++;
 	}
 	return (SUCCESS);
-}
-
-void	ft_destroy_mutexes(t_philo *philo, t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < philo->data->philo_nb)
-		pthread_mutex_destroy (&philo->fork[i++]);
-	i = 0;
-	while (i < M_NUM)
-		pthread_mutex_destroy (&data->mutex[i++]);
-}
-
-void	ft_free_structs(t_philo *philos_array, t_data *data)
-{
-	free (data);
-	free (philos_array);
 }

@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/03 10:54:13 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/07 10:02:54 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/07 12:59:55 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@
 # include <limits.h>
 # include <pthread.h>
 # include <sys/time.h>
-
-// # ifndef NULL
-// #  define NULL ((char *)0)
-// # endif
 
 // ===== [ enums ] =====
 typedef enum e_mutexes
@@ -76,6 +72,7 @@ typedef struct s_philo
 	pthread_mutex_t		*fork;
 }	t_philo;
 
+//==============================================================================: Init
 // ===== [ init ] =====
 int				ft_init(t_philo *p_a, t_data *data, int argc, char *argv[]);
 t_philo			*ft_init_helper(t_philo *p_a, t_data *d, pthread_mutex_t *fork);
@@ -88,6 +85,7 @@ bool			ft_is_numberic(char *str);
 int				ft_check_args(int argc, char *argv[]);
 int				ft_check_args_helper(int argc, char *argv[]);
 
+//==============================================================================: Tools & Utils
 // ===== [ tools ] =====
 long int		ft_atol(char *str);
 
@@ -102,38 +100,39 @@ unsigned long	ft_abs_time(void);
 unsigned long	ft_rel_time(unsigned long begin);
 void			ft_msleep(unsigned long msec);
 
+//==============================================================================: Simulator
 // ===== [ simulator ] =====
 int				ft_simulator(t_philo *philos_array, t_data *data);
-void			ft_destroy_mutexes(t_philo *philo, t_data *data);
 int				ft_iniciate_observe(t_philo *p_a, t_data *data, pthread_t *th);
 int				ft_create_threads(t_philo *p_a, t_data *data, pthread_t *th);
-void			ft_exit(t_philo *philos_array, t_data *data, pthread_t *th);
 
+//==============================================================================: Thread
 // ===== [ simulation thread ] =====
 void			*ft_sim_thread(void *arg);
-int				ft_check_die(t_philo *self);
 int				ft_observe_thread(t_philo *philos_array, t_data *data);
-int				ft_set_are_done(t_philo *p_a, t_data *data, unsigned long l_m);
-int				ft_all_done(t_philo *p_a, t_data *data);
-void			ft_done(t_data *data);
+int				ft_sleep(t_philo *self);
+int				ft_think(t_philo *self);
 
-// ===== [ check end conditions ] =====
-int				ft_set_is_dead(t_philo *p_a, t_data *data, unsigned long l_meal);
-void			ft_died(t_data *data);
+// ===== [ end conditions ] =====
+void			ft_died(t_philo *philos_array, t_data *data);
+int				ft_check_die(t_philo *self);
+
+// ===== [ done conditions ] =====
+int				ft_all_done(t_philo *p_a, t_data *data);
+int				ft_is_done(t_philo *self);
+void			ft_done(t_data *data);
+int				ft_max(int a, int b);
+int				ft_min(int a, int b);
 
 // ===== [ eating ] =====
 int				ft_eating(t_philo *self);
 int				ft_start_eating(t_philo *self);
 int				ft_finish_eating(t_philo *self);
 
-// ===== [ eating operations ] =====
-int				ft_sleep(t_philo *self);
-int				ft_think(t_philo *self);
-int				ft_max(int a, int b);
-int				ft_min(int a, int b);
-int				ft_is_done(t_philo *self);
-
-// ===== [ move ] =====
+//==============================================================================: Exit
+// ===== [ free ] =====
+void			ft_destroy_mutexes(t_philo *philo, t_data *data);
 void			ft_free_structs(t_philo *philos_array, t_data *data);
+void			ft_exit(t_philo *philos_array, t_data *data, pthread_t *th);
 
 #endif

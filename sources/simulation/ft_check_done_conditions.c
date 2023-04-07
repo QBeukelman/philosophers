@@ -1,34 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_eating_operations.c                             :+:    :+:            */
+/*   ft_check_done_conditions.c.c                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/03 11:15:14 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/03 11:15:55 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/04/07 12:48:03 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-// ===== [ sleep ] =====
-int	ft_sleep(t_philo *self)
+// ===== [ all done ] =====
+int	ft_all_done(t_philo *p_a, t_data *data)
 {
-	ft_print(self, "is sleeping");
-	ft_msleep(self->data->time_sleep);
-	return (SUCCESS);
+	int		i;
+	int		count_success;
+	int		meals_count;
+
+	if (data->must_eat == -1)
+		return (FALSE);
+	i = 0;
+	count_success = 0;
+	while (i < data->philo_nb)
+	{
+		pthread_mutex_lock(&p_a->data->mutex[MEALS]);
+		meals_count = p_a[i].meal_counter;
+		pthread_mutex_unlock(&p_a->data->mutex[MEALS]);
+		if (meals_count >= data->must_eat)
+			count_success++;
+		i++;
+		usleep(50);
+	}
+	if (count_success == (data->philo_nb))
+		return (TRUE);
+	return (FALSE);
 }
 
-// ===== [ think ] =====
-int	ft_think(t_philo *self)
-{
-	ft_print(self, "is thinking");
-	ft_msleep(self->data->time_think);
-	return (SUCCESS);
-}
-
-// ===== [ done ] =====
+// ===== [ is done ] =====
 int	ft_is_done(t_philo *self)
 {
 	pthread_mutex_lock(&self->data->mutex[DONE]);
@@ -41,6 +51,15 @@ int	ft_is_done(t_philo *self)
 	return (FALSE);
 }
 
+// ===== [ done ] =====
+void	ft_done(t_data *data)
+{
+	pthread_mutex_lock (&data->mutex[DONE]);
+	data->done = TRUE;
+	pthread_mutex_unlock (&data->mutex[DONE]);
+}
+
+// ===== [ fork selection ] =====
 int	ft_max(int a, int b)
 {
 	if (b > a)

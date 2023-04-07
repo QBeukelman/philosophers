@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/18 10:59:48 by qbeukelm      #+#    #+#                  #
-#    Updated: 2023/04/07 10:11:32 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2023/04/07 13:41:06 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,12 +38,13 @@ SOURCES_TOOLS = ft_atol.c \
 
 SOURCES_UTILS = sim_utils.c \
 				time_utils.c \
+				clean_exit.c \
 
 SOURCES_SIM = ft_simulation_thread.c \
 				ft_simulator.c \
 				ft_eating.c \
-				ft_eating_operations.c \
-				ft_check_end_conditions.c \
+				ft_check_done_conditions.c \
+				ft_check_die_conditions.c \
 
 
 # ===== Manage Directories =====

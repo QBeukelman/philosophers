@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 08:48:11 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/07 10:00:45 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/07 13:35:04 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_data	*ft_init_data(t_data *data, int argc, char *argv[])
 	data->time_die = (int)ft_atol(argv[2]);
 	data->time_eat = (int)ft_atol(argv[3]);
 	data->time_sleep = (int)ft_atol(argv[4]);
-	data->time_think = 0;
+	data->time_think = (int)ft_atol(argv[4]); // ! Was 0
 	if ((data->philo_nb % 2) && (data->time_eat > data->time_sleep))
 		data->time_think = 1 + (data->time_eat - data->time_sleep);
 	if (argc == 5)
