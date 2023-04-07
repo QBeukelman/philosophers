@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_check_done_conditions.c.c                       :+:    :+:            */
+/*   ft_check_done_conditions.c                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/03 11:15:14 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/07 12:48:03 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/07 14:04:11 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	ft_all_done(t_philo *p_a, t_data *data)
 		pthread_mutex_unlock(&p_a->data->mutex[MEALS]);
 		if (meals_count >= data->must_eat)
 			count_success++;
-		i++;
 		usleep(50);
+		i++;
 	}
 	if (count_success == (data->philo_nb))
 		return (TRUE);
