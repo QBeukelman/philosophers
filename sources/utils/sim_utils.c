@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 09:59:49 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/03 10:48:37 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/04/07 10:02:35 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	ft_printf_all_done(t_philo *self)
 		"All philosphoers done\n");
 }
 
-void	ft_printf_died(t_philo *self)
+void	ft_printf_died(t_data *data)
 {
 	printf ("%lu %d"
 		" \033[31;1m%s\033[0m\n",
-		ft_rel_time(self->data->sim_begin),
-		self->id,
+		data->time_of_death,
+		data->id_died,
 		"died");
 }
 

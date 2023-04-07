@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/03 10:54:13 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/07 08:41:40 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/07 10:02:54 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct s_data
 	int					must_eat;
 	int					done;
 	int					died;
+	int					id_died;
+	unsigned long		time_of_death;
 	pthread_mutex_t		*mutex;
 }	t_data;
 
@@ -92,7 +94,7 @@ long int		ft_atol(char *str);
 // ===== [ sim utils ] =====
 void			ft_print(t_philo *philos_array, char *str);
 void			ft_printf_all_done(t_philo *self);
-void			ft_printf_died(t_philo *self);
+void			ft_printf_died(t_data *data);
 void			ft_print_error(char *str);
 
 // ===== [ time utils ] =====
@@ -116,7 +118,7 @@ int				ft_all_done(t_philo *p_a, t_data *data);
 void			ft_done(t_data *data);
 
 // ===== [ check end conditions ] =====
-int				ft_set_is_dead(t_data *data, unsigned long l_meal);
+int				ft_set_is_dead(t_philo *p_a, t_data *data, unsigned long l_meal);
 void			ft_died(t_data *data);
 
 // ===== [ eating ] =====

@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/18 10:59:48 by qbeukelm      #+#    #+#                  #
-#    Updated: 2023/04/07 09:20:17 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2023/04/07 10:11:32 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME_EXCUITABLE = philo
 
 
 # ===== Compile =====
-CC = gcc # -fsanitize=thread
+CC = gcc -fsanitize=thread
 CFLAGS = -Wall -Wextra -Werror
 
 
