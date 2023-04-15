@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/03 10:54:13 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/07 12:59:55 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/15 14:42:35 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int				ft_check_args_helper(int argc, char *argv[]);
 // ===== [ tools ] =====
 long int		ft_atol(char *str);
 
-// ===== [ sim utils ] =====
+// ===== [ print utils ] =====
 void			ft_print(t_philo *philos_array, char *str);
 void			ft_printf_all_done(t_philo *self);
 void			ft_printf_died(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:07 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/07 14:22:42 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/15 17:59:19 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,23 @@ int	ft_simulator(t_philo *philos_array, t_data *data)
 	if (ft_create_threads(philos_array, data, th) != SUCCESS)
 		return (FAILURE);
 		
-	ft_iniciate_observe(philos_array, data, th);
-	
-	i = 0;
-	while (i < data->philo_nb)
-	{
-		if (pthread_join (th[i], NULL))
-			return (FAILURE);
-		i++;
-	}
-	ft_exit(philos_array, data, th);
-	return (SUCCESS);
-}
-
-
-int	ft_iniciate_observe(t_philo *philos_array, t_data *data, pthread_t *th)
-{
 	if (ft_observe_thread(philos_array, data) != SUCCESS)
-	{	
-		if (data->done == TRUE)
-			ft_printf_all_done(philos_array);
-		if (data->died == TRUE)
-			ft_printf_died(data);
-		(void)free (th);
-		return (FAILURE);
+	{
+		i = 0;
+		while (i < data->philo_nb)
+		{
+			if (pthread_detach(th[i]))
+				return (FAILURE);
+			i++;
+		}
 	}
+
+	if (data->done == TRUE)
+		ft_printf_all_done(philos_array);
+	if (data->died == TRUE)
+		ft_printf_died(data);
+	
+	ft_exit(philos_array, data, th);
 	return (SUCCESS);
 }
 

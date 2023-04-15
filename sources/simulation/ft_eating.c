@@ -20,12 +20,7 @@ int	ft_eating(t_philo *self)
 	self->last_meal = ft_abs_time ();
 	self->meal_counter++;
 	pthread_mutex_unlock(&self->data->mutex[MEALS]);
-	if (ft_is_done(self) == TRUE)
-	{
-		ft_finish_eating(self);
-		return (FAILURE);
-	}
-	
+
 	ft_msleep(self->data->time_eat);
 	ft_finish_eating(self);
 

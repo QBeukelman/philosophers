@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/18 10:59:48 by qbeukelm      #+#    #+#                  #
-#    Updated: 2023/04/07 14:21:18 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2023/04/15 17:59:32 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME_EXCUITABLE = philo
 
 
 # ===== Compile =====
-CC = gcc -fsanitize=thread
+CC = gcc #-fsanitize=thread
 CFLAGS = #-Wall -Wextra -Werror
 
 
@@ -36,7 +36,7 @@ SOURCES_INIT = check_args.c \
 
 SOURCES_TOOLS = ft_atol.c \
 
-SOURCES_UTILS = sim_utils.c \
+SOURCES_UTILS = print_utils.c \
 				time_utils.c \
 				clean_exit.c \
 
