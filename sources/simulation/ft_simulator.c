@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:07 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/15 17:59:19 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/15 20:30:20 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	ft_simulator(t_philo *philos_array, t_data *data)
 	if (th == NULL)
 	{
 		ft_print_error("ERROR: Not enough memory to perform malloc().");
-		return (free (th), FAILURE);
+		return (FAILURE); // ! Catch Failure
 	}
 	if (ft_create_threads(philos_array, data, th) != SUCCESS)
-		return (FAILURE);
+		return (FAILURE); // ! Catch Failure
 		
 	if (ft_observe_thread(philos_array, data) != SUCCESS)
 	{
@@ -33,6 +33,7 @@ int	ft_simulator(t_philo *philos_array, t_data *data)
 		{
 			if (pthread_detach(th[i]))
 				return (FAILURE);
+			// pthread_join (th[i], NULL);
 			i++;
 		}
 	}
@@ -63,6 +64,7 @@ int	ft_create_threads(t_philo *philos_array, t_data *data, pthread_t *th)
 			(void)free (th);
 			return (FAILURE);
 		}
+		usleep(200); // Edit
 		i++;
 	}
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/15 15:22:22 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/15 20:33:52 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ void	*ft_sim_thread(void *arg)
 	self = (t_philo *)arg;
 	if (self->id % 2 == 0)
 	{
-		usleep(200);
 		// ft_print(self, "is thinking");
-		// ft_msleep(self->data->time_eat);
+		ft_msleep(self->data->time_eat);
 	}
 	while (1)
 	{
@@ -47,9 +46,9 @@ int	ft_observe_thread(t_philo *philos_array, t_data *data)
 	i = 0;
 	while (1)
 	{
-		pthread_mutex_lock(&data->mutex[MEALS]);
+		pthread_mutex_lock(&philos_array[i].data->mutex[MEALS]);
 		l_meal = philos_array[i].last_meal;
-		pthread_mutex_unlock(&data->mutex[MEALS]);
+		pthread_mutex_unlock(&philos_array[i].data->mutex[MEALS]);
 		if (l_meal && (ft_abs_time() - l_meal) > (unsigned long)data->time_die)
 		{
 			ft_died(philos_array, data);
@@ -60,7 +59,7 @@ int	ft_observe_thread(t_philo *philos_array, t_data *data)
 			ft_done(data);
 			return (FAILURE);
 		}
-		usleep(50);
+		usleep(200);
 		i = (i + 1) % data->philo_nb;
 	}
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/03 10:54:13 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/15 14:42:35 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/15 21:19:38 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ typedef struct s_philo
 
 //==============================================================================: Init
 // ===== [ init ] =====
-int				ft_init(t_philo *p_a, t_data *data, int argc, char *argv[]);
-t_philo			*ft_init_helper(t_philo *p_a, t_data *d, pthread_mutex_t *fork);
-t_data			*ft_init_data(t_data *data, int argc, char *argv[]);
-t_philo			*ft_init_philo(t_philo *philos_array, t_data *data);
-t_data			*ft_init_data_mutexes(t_data *data);
+int				ft_init(t_philo **philos_array, t_data **data, int argc, char *argv[]);
+int				ft_init_helper(t_philo **p_a, t_data *data, pthread_mutex_t *fork);
+int				ft_init_data(t_data **data, int argc, char *argv[]);
+int				ft_init_philo(t_philo **philos_array, t_data *data);
+int				ft_init_data_mutexes(t_data **data);
 
 // ===== [ check args ] =====
 bool			ft_is_numberic(char *str);

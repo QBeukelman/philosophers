@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 09:59:49 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/15 14:48:07 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/15 20:40:35 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	ft_print(t_philo *self, char *str)
 {
-	pthread_mutex_lock(&self->data->mutex[PRINT]);
+	// pthread_mutex_lock(&self->data->mutex[PRINT]);
 	printf("%lu %d"
 		" \e[1;34m%s\e[0m\n",
 		ft_rel_time(self->data->sim_begin),
 		self->id, str);
-	pthread_mutex_unlock(&self->data->mutex[PRINT]);
+	// pthread_mutex_unlock(&self->data->mutex[PRINT]);
 }
 
 void	ft_printf_all_done(t_philo *self)

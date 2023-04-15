@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/23 11:39:26 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2023/04/07 14:28:15 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/15 20:44:34 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_eating(t_philo *self)
 {
 	ft_start_eating(self);
-		
+	
 	pthread_mutex_lock(&self->data->mutex[MEALS]);
 	self->last_meal = ft_abs_time ();
 	self->meal_counter++;
