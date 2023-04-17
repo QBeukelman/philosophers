@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/03 10:54:13 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/17 09:42:27 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/04/17 10:32:30 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int				ft_finish_eating(t_philo *self);
 // ===== [ clean exit ] =====
 void			ft_destroy_mutexes(t_philo *philo, t_data *data);
 void			ft_free_structs(t_philo *philos_array, t_data *data);
-void			ft_exit(t_philo *philos_array, t_data *data, pthread_t *th);
+void			ft_exit(t_philo *philos_array, t_data *data);
 int				ft_exit_init(t_philo **philos_array, t_data **data);
 
 #endif
