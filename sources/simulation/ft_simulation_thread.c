@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/15 20:33:52 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/17 08:47:51 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	*ft_sim_thread(void *arg)
 	self = (t_philo *)arg;
 	if (self->id % 2 == 0)
 	{
-		// ft_print(self, "is thinking");
 		ft_msleep(self->data->time_eat);
 	}
 	while (1)

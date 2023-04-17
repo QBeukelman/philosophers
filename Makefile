@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/18 10:59:48 by qbeukelm      #+#    #+#                  #
-#    Updated: 2023/04/15 21:28:42 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2023/04/17 09:15:19 by qbeukelm      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ NAME_EXCUITABLE = philo
 
 
 # ===== Compile =====
-CC = gcc -fsanitize=thread
-CFLAGS = #-Wall -Wextra -Werror
+CC = gcc -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
 
 
 # ===== Colors =====

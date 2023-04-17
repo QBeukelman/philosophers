@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/21 08:48:11 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/15 21:21:24 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/17 09:24:47 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,8 @@ int	ft_init_data(t_data **data, int argc, char *argv[])
 		(*data)->must_eat = (int)ft_atol(argv[5]);
 	(*data)->done = FALSE;
 	(*data)->died = FALSE;
-	
-	ft_init_data_mutexes(data);
-
+	if (ft_init_data_mutexes(data) != SUCCESS)
+		return (FAILURE);
 	return (SUCCESS);
 }
 
@@ -89,7 +88,7 @@ int	ft_init_data_mutexes(t_data **data)
 	if (mutex == NULL)
 	{
 		ft_print_error("ERROR: Not enough memory to perform malloc().");
-		return (FAILURE); // ! Catch NULL
+		return (FAILURE);
 	}
 	i = 0;
 	while (i < M_NUM)
@@ -99,19 +98,26 @@ int	ft_init_data_mutexes(t_data **data)
 }
 
 // ===== [ INIT ] =====
-int		ft_init(t_philo **philos_array, t_data **data, int argc, char *argv[])
+int	ft_init(t_philo **p_a, t_data **data, int argc, char *argv[])
 {
 	*data = (t_data *)malloc (sizeof (t_data));
 	if (*data == NULL)
+	{
+		ft_print_error("ERROR: Not enough memory to perform malloc().");
 		return (FAILURE);
+	}
+	*p_a = (t_philo *)malloc (sizeof (t_philo) * (*data)->philo_nb);
+	if (*p_a == NULL)
+	{
+		ft_exit_init(p_a, data);
+		ft_print_error("ERROR: Not enough memory to perform malloc().");
+		return (FAILURE);
+	}
 	(*data)->mutex = NULL;
 	if (ft_init_data(data, argc, argv) != SUCCESS)
-		return (FAILURE);
-	*philos_array = (t_philo *)malloc (sizeof (t_philo) * (size_t)(*data)->philo_nb);
-	if (*philos_array == NULL)
-		return (FAILURE);
-	(*philos_array)->fork = NULL;
-	if (ft_init_philo (philos_array, *data) != SUCCESS)
-		return (FAILURE);
+		return (ft_exit_init(p_a, data), FAILURE);
+	(*p_a)->fork = NULL;
+	if (ft_init_philo (p_a, *data) != SUCCESS)
+		return (ft_exit_init(p_a, data), FAILURE);
 	return (SUCCESS);
 }

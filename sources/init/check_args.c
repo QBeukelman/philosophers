@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:58:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/03 10:52:49 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/04/17 09:11:28 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,6 @@ int	ft_check_args_helper(int argc, char *argv[])
 		ft_print_error("Error: Too many arguments.");
 		return (FAILURE);
 	}
-	if ((int)ft_atol(argv[1]) == 1)
-	{
-		ft_print_error("Error: Number of philosophers must be greater than 1.");
-		return (FAILURE);
-	}
 	if (argc == 6)
 	{
 		if ((int)ft_atol(argv[5]) == 0)
@@ -71,5 +66,20 @@ int	ft_check_args_helper(int argc, char *argv[])
 			return (FAILURE);
 		}
 	}
+	if ((int)ft_atol(argv[1]) == 1)
+	{
+		ft_one_philo(argv);
+		return (FAILURE);
+	}
 	return (SUCCESS);
+}
+
+void	ft_one_philo(char *argv[])
+{
+	ft_msleep((int)ft_atol(argv[2]));
+	printf ("%d %d"
+		" \033[31;1m%s\033[0m\n",
+		(int)ft_atol(argv[2]),
+		1,
+		"died");
 }

@@ -6,7 +6,7 @@
 /*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/07 12:58:45 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2023/04/15 21:27:48 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/04/17 08:52:44 by qbeukelm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,26 @@ void	ft_exit(t_philo *philos_array, t_data *data, pthread_t *th)
 	ft_destroy_mutexes(philos_array, data);
 	(void)free (th);
 	ft_free_structs(philos_array, data);
+}
+
+// ===== [ EXIT INIT ] =====
+int	ft_exit_init(t_philo **philos_array, t_data **data)
+{
+	int	i;
+
+	if (*data != NULL)
+	{
+		i = 0;
+		while (i < M_NUM)
+			pthread_mutex_destroy (&(*data)->mutex[i++]);
+		free (data);
+	}
+	if (*philos_array != NULL)
+	{
+		i = 0;
+		while (i < (*philos_array)->data->philo_nb)
+			pthread_mutex_destroy (&(*philos_array)->fork[i++]);
+		free (philos_array);
+	}
+	return (SUCCESS);
 }
