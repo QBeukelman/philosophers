@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/04/03 10:54:13 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/17 10:32:30 by qbeukelm      ########   odam.nl         */
+/*   Updated: 2023/04/17 22:57:36 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ typedef enum e_bool
 typedef struct s_data
 {
 	unsigned long		sim_begin;
-	unsigned char		philo_nb;
+	int					philo_nb;
 	int					time_die;
 	int					time_eat;
 	int					time_sleep;
 	int					time_think;
 	int					must_eat;
-	unsigned char		done;
-	unsigned char		died;
-	unsigned char		id_died;
+	int					done;
+	int					died;
+	int					id_died;
 	unsigned long		time_of_death;
 	pthread_mutex_t		*mutex;
 }	t_data;
@@ -66,8 +66,8 @@ typedef struct s_philo
 	int					id;
 	unsigned long		last_meal;
 	int					meal_counter;
-	unsigned char		l_fork;
-	unsigned char		r_fork;
+	int					l_fork;
+	int					r_fork;
 	t_data				*data;
 	pthread_mutex_t		*fork;
 }	t_philo;
