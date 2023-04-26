@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/18 10:59:48 by qbeukelm      #+#    #+#                  #
-#    Updated: 2023/04/17 10:35:41 by qbeukelm      ########   odam.nl          #
+#    Updated: 2023/04/26 07:48:58 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,6 +87,8 @@ $(DIR_OBJ)/$(DIR_SOURCES_SIM)/%.o: $(DIR_SOURCES_SIM)/%.c
 
 # ===== Rules =====
 all: $(DIR_OBJ)/$(NAME)
+
+# ! FIX: CC line is ignores all previous definitions
 
 $(DIR_OBJ)/$(NAME): $(O_SOURCES) $(O_SOURCES_INIT) $(O_SOURCES_TOOLS) $(O_SOURCES_UTILS) $(O_SOURCES_SIM)
 	@$(AR) rcs $@ $^
