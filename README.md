@@ -4,6 +4,7 @@
 	Dining Philosophers Problem
 </h1>
 
+
 <br />
 
 In Computer Science, the dining philosophers problem is an example often used in concurrent algorithm design to illustrate synchronization issues and techniques for resolving them. The example is summarized as follows, and will serve as the rules of the program.
