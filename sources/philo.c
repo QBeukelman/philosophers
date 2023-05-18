@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/17 23:09:54 by quentinbeuk   ########   odam.nl         */
+/*   Updated: 2023/05/18 16:41:08 by quentinbeuk   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 #include "../includes/philo.h"
 
 void	ft_show_leaks(void)
+// atexit(ft_show_leaks);
 {
 	system("leaks philo");
 }
@@ -39,7 +40,6 @@ int	main(int argc, char *argv[])
 	t_philo			*philos_array;
 	t_data			*data;
 
-	// atexit(ft_show_leaks);
 	if (ft_check_args(argc, argv) != SUCCESS)
 		return (EXIT_FAILURE);
 	if (ft_init(&philos_array, &data, argc, argv) != SUCCESS)
