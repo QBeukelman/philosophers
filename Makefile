@@ -6,7 +6,7 @@
 #    By: qbeukelm <qbeukelm@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/03/18 10:59:48 by qbeukelm      #+#    #+#                  #
-#    Updated: 2023/05/19 13:34:12 by quentinbeuk   ########   odam.nl          #
+#    Updated: 2023/05/19 13:38:50 by quentinbeuk   ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ OBJ = $(addprefix $(DIR_OBJ)/, $(SOURCES:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_UTILS:.c=.o)) \
 	$(addprefix $(DIR_OBJ)/, $(SOURCES_SIM:.c=.o))
 
-# ===== Make Rules =====
+# ===== Rules =====
 all: $(NAME_EXECUTABLE)
 
 $(NAME_EXECUTABLE): $(OBJ)
