@@ -30,7 +30,7 @@
 #include "../includes/philo.h"
 
 void	ft_show_leaks(void)
-// atexit(ft_show_leaks);
+// atexit(ft_show_leaks); edited
 {
 	system("leaks philo");
 }
