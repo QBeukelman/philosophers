@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   init.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/03/21 08:48:11 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/17 09:24:47 by qbeukelm      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/21 08:48:11 by qbeukelm          #+#    #+#             */
+/*   Updated: 2024/06/17 11:51:56 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,10 @@ int	ft_init(t_philo **p_a, t_data **data, int argc, char *argv[])
 		ft_print_error("ERROR: Not enough memory to perform malloc().");
 		return (FAILURE);
 	}
+	(*data)->mutex = NULL;
+	if (ft_init_data(data, argc, argv) != SUCCESS)
+		return (ft_exit_init(p_a, data), FAILURE);
+
 	*p_a = (t_philo *)malloc (sizeof (t_philo) * (*data)->philo_nb);
 	if (*p_a == NULL)
 	{
@@ -113,9 +117,6 @@ int	ft_init(t_philo **p_a, t_data **data, int argc, char *argv[])
 		ft_print_error("ERROR: Not enough memory to perform malloc().");
 		return (FAILURE);
 	}
-	(*data)->mutex = NULL;
-	if (ft_init_data(data, argc, argv) != SUCCESS)
-		return (ft_exit_init(p_a, data), FAILURE);
 	(*p_a)->fork = NULL;
 	if (ft_init_philo (p_a, *data) != SUCCESS)
 		return (ft_exit_init(p_a, data), FAILURE);

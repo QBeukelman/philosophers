@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   philo.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/03/18 10:23:02 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/05/18 16:41:08 by quentinbeuk   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   philo.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/18 10:23:02 by qbeukelm          #+#    #+#             */
+/*   Updated: 2024/06/17 11:55:17 by quentin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ int	main(int argc, char *argv[])
 	t_philo			*philos_array;
 	t_data			*data;
 
+
+	for (int i = 0; i < argc; i++) {
+		printf("argv[%d]: %s\n", i, argv[i]);
+	}
+
+	philos_array = NULL;
+	data = NULL;
 	if (ft_check_args(argc, argv) != SUCCESS)
 		return (EXIT_FAILURE);
 	if (ft_init(&philos_array, &data, argc, argv) != SUCCESS)

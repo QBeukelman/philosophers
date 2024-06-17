@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: qbeukelm <qbeukelm@student.codam.nl>         +#+                      #
-#                                                    +#+                       #
-#    Created: 2023/03/18 10:59:48 by qbeukelm      #+#    #+#                  #
-#    Updated: 2023/05/24 08:13:02 by quentinbeuk   ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: quentin <quentin@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/03/18 10:59:48 by qbeukelm          #+#    #+#              #
+#    Updated: 2024/06/17 11:03:47 by quentin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,23 +65,23 @@ OBJ = $(addprefix $(DIR_OBJ)/, $(SOURCES:.c=.o)) \
 all: $(NAME_EXECUTABLE)
 
 $(NAME_EXECUTABLE): $(OBJ)
-	$(CC) $(CFLAGS) -o $@ $^
+	@$(CC) $(CFLAGS) -o $@ $^
 	@echo "$(GREEN)Successfully compiled $(NAME_EXECUTABLE)$(RESET)"
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES)/%.c | $(DIR_OBJ)
-	$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_INIT)/%.c | $(DIR_OBJ)
-	$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_TOOLS)/%.c | $(DIR_OBJ)
-	$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_UTILS)/%.c | $(DIR_OBJ)
-	$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ)/%.o: $(DIR_SOURCES_SIM)/%.c | $(DIR_OBJ)
-	$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
 $(DIR_OBJ):
 	@mkdir -p $@
