@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   clean_exit.c                                       :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: quentinbeukelman <quentinbeukelman@stud      +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/04/07 12:58:45 by quentinbeuk   #+#    #+#                 */
-/*   Updated: 2023/04/17 10:33:21 by qbeukelm      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   clean_exit.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/07 12:58:45 by quentinbeuk       #+#    #+#             */
+/*   Updated: 2024/10/04 15:21:01 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,17 @@ void	ft_destroy_mutexes(t_philo *philo, t_data *data)
 
 void	ft_free_structs(t_philo *philos_array, t_data *data)
 {
+	free (data->mutex);
 	free (data);
+	free (philos_array->fork);
 	free (philos_array);
 }
 
-void	ft_exit(t_philo *philos_array, t_data *data)
+int	ft_exit(t_philo *philos_array, t_data *data)
 {
 	ft_destroy_mutexes(philos_array, data);
 	ft_free_structs(philos_array, data);
+	return (SUCCESS);
 }
 
 // ===== [ EXIT INIT ] =====

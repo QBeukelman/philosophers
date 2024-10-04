@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:54:13 by qbeukelm          #+#    #+#             */
-/*   Updated: 2024/06/17 11:32:35 by quentin          ###   ########.fr       */
+/*   Updated: 2024/10/04 15:13:13 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int				ft_finish_eating(t_philo *self);
 // ===== [ clean exit ] =====
 void			ft_destroy_mutexes(t_philo *philo, t_data *data);
 void			ft_free_structs(t_philo *philos_array, t_data *data);
-void			ft_exit(t_philo *philos_array, t_data *data);
+int				ft_exit(t_philo *philos_array, t_data *data);
 int				ft_exit_init(t_philo **philos_array, t_data **data);
 
 #endif
