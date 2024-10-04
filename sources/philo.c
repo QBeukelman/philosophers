@@ -6,7 +6,7 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm          #+#    #+#             */
-/*   Updated: 2024/10/04 12:03:46 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2024/10/04 12:59:20 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	ft_show_leaks(void)
 {
 	system("leaks philo");
 }
-
-// ! 5 800 200 200 7
 
 int	main(int argc, char *argv[])
 {

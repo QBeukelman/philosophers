@@ -7,8 +7,8 @@ A philo should die
 
 No philo should die, simulation should stop after X iterations
 
-5 800 200 200 7
-4 410 200 200 10
+5 800 200 200 7				<- Eats more that 7 times
+4 410 200 200 10			<- Not all philos eat 10 times
 
 
 Error handeling
@@ -22,7 +22,7 @@ Error handeling
 
 No philo should die
 
-5 800 200 200				<- ERROR
+5 800 200 200
 5 600 150 150
 4 410 200 200
 100 800 200 200

@@ -1,16 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ft_simulation_thread.c                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/03/21 10:27:31 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/17 08:47:51 by qbeukelm      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ft_simulation_thread.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/21 10:27:31 by qbeukelm          #+#    #+#             */
+/*   Updated: 2024/10/04 14:06:13 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
+
+static bool is_done_eating(t_philo *self)
+{
+	bool	is_done;
+
+	is_done = false;
+	pthread_mutex_lock(&self->data->mutex[MEALS]);
+	is_done = self->meal_counter == self->data->must_eat;
+	pthread_mutex_unlock(&self->data->mutex[MEALS]);
+	return (is_done);
+}
 
 // ===== [ thread ] =====
 void	*ft_sim_thread(void *arg)
@@ -29,7 +40,12 @@ void	*ft_sim_thread(void *arg)
 		if (ft_is_done(self) == TRUE)
 			break ;
 		if (ft_eating(self) != SUCCESS)
+				break ;
+		if (is_done_eating(self))
+		{
+			ft_think(self);
 			break ;
+		}
 		if (ft_sleep(self) == SUCCESS)
 			ft_think(self);
 	}
@@ -58,7 +74,6 @@ int	ft_observe_thread(t_philo *philos_array, t_data *data)
 			ft_done(data);
 			return (FAILURE);
 		}
-		usleep(200);
 		i = (i + 1) % data->philo_nb;
 	}
 	return (SUCCESS);
