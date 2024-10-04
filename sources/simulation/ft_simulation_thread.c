@@ -6,13 +6,13 @@
 /*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 10:27:31 by qbeukelm          #+#    #+#             */
-/*   Updated: 2024/10/04 14:06:13 by qbeukelm         ###   ########.fr       */
+/*   Updated: 2024/10/04 14:15:06 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philo.h"
 
-static bool is_done_eating(t_philo *self)
+static bool	is_done_eating(t_philo *self)
 {
 	bool	is_done;
 
@@ -40,7 +40,7 @@ void	*ft_sim_thread(void *arg)
 		if (ft_is_done(self) == TRUE)
 			break ;
 		if (ft_eating(self) != SUCCESS)
-				break ;
+			break ;
 		if (is_done_eating(self))
 		{
 			ft_think(self);
