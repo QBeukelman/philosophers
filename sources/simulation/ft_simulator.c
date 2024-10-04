@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ft_simulator.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qbeukelm <qbeukelm@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/03/21 10:27:07 by qbeukelm      #+#    #+#                 */
-/*   Updated: 2023/04/17 10:32:42 by qbeukelm      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ft_simulator.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/21 10:27:07 by qbeukelm          #+#    #+#             */
+/*   Updated: 2024/10/04 15:12:45 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_simulator(t_philo *philos_array, t_data *data)
 	}
 	ft_end_conditions(philos_array, data);
 	free (th);
-	return (SUCCESS);
+	return (ft_exit(philos_array, data));
 }
 
 int	ft_create_threads(t_philo *philos_array, t_data *data, pthread_t *th)
