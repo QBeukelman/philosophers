@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: quentin <quentin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: qbeukelm <qbeukelm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 10:23:02 by qbeukelm          #+#    #+#             */
-/*   Updated: 2024/06/17 11:55:17 by quentin          ###   ########.fr       */
+/*   Updated: 2024/10/04 12:59:20 by qbeukelm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,6 @@ int	main(int argc, char *argv[])
 {
 	t_philo			*philos_array;
 	t_data			*data;
-
-
-	for (int i = 0; i < argc; i++) {
-		printf("argv[%d]: %s\n", i, argv[i]);
-	}
 
 	philos_array = NULL;
 	data = NULL;

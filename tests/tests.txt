@@ -1,0 +1,30 @@
+A philo should die
+
+1 800 200 200
+4 310 200 100
+4 200 205 200
+
+
+No philo should die, simulation should stop after X iterations
+
+5 800 200 200 7				<- Eats more that 7 times
+4 410 200 200 10			<- Not all philos eat 10 times
+
+
+Error handeling
+
+-5 600 200 200
+4 -5 200 200
+4 600 -5 200
+4 600 200 -5
+4 600 200 200 -5
+
+
+No philo should die
+
+5 800 200 200
+5 600 150 150
+4 410 200 200
+100 800 200 200
+105 800 200 200
+200 800 200 200
